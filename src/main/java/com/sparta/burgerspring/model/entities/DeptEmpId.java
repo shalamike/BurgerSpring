@@ -46,4 +46,11 @@ public class DeptEmpId implements Serializable {
         return Objects.hash(empNo, deptNo);
     }
 
+    @Override
+    public String toString() {
+        return "DeptEmpId{" +
+                "empNo=" + empNo +
+                ", deptNo='" + deptNo + '\'' +
+                '}';
+    }
 }
