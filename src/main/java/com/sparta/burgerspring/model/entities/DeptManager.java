@@ -1,4 +1,4 @@
-package com.sparta.burgerspring;
+package com.sparta.burgerspring.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;

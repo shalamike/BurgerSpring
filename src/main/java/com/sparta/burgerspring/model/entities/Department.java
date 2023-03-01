@@ -1,4 +1,4 @@
-package com.sparta.burgerspring;
+package com.sparta.burgerspring.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

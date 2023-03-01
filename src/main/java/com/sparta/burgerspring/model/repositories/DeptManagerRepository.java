@@ -1,4 +1,8 @@
 package com.sparta.burgerspring.model.repositories;
 
-public interface DeptManagerRepository extends org.springframework.data.jpa.repository.JpaRepository<com.sparta.burgerspring.model.entities.DeptManager, com.sparta.burgerspring.model.entities.DeptManagerId> {
+import com.sparta.burgerspring.model.entities.DeptManager;
+import com.sparta.burgerspring.model.entities.DeptManagerId;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DeptManagerRepository extends JpaRepository<DeptManager, DeptManagerId> {
 }
