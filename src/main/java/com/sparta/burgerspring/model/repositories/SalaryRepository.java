@@ -1,4 +1,8 @@
 package com.sparta.burgerspring.model.repositories;
 
-public interface SalaryRepository extends org.springframework.data.jpa.repository.JpaRepository<com.sparta.burgerspring.model.entities.Salary, com.sparta.burgerspring.model.entities.SalaryId> {
+import com.sparta.burgerspring.model.entities.Salary;
+import com.sparta.burgerspring.model.entities.SalaryId;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
 }
