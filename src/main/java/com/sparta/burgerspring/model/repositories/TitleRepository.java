@@ -13,8 +13,10 @@ public interface TitleRepository extends JpaRepository<Title, TitleId> {
 
     @Query(value = "select s from Salary s, Title t \n" +
             "where t.empNo =  s.empNo \n" +
-            " and year( s.toDate) = :year and year( s.toDate )<= :year \n" +
-            "and year(s.id.fromDate) >= :year and year(s.id.fromDate) <= :year \n" +
+            "and s.toDate = t.toDate \n"+
+            "and s.id.fromDate = t.id.fromDate \n" +
+            "and year( s.toDate) = :year and year( s.toDate )= :year \n" +
+            "and year(s.id.fromDate) = :year and year(s.id.fromDate) = :year \n" +
             "and t.id.title = :title")
     List<Salary> getSalariesInYear(@Param("title") String title,@Param("year") String year);
 
