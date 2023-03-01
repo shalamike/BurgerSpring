@@ -56,4 +56,13 @@ public class DeptManager {
         this.toDate = toDate;
     }
 
+    @Override
+    public String toString() {
+        return "DeptManager{" +
+                "id=" + id +
+                ", deptNo=" + deptNo +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
