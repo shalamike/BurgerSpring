@@ -17,7 +17,7 @@ public class TitleService {
         this.titleRepository = titleRepository;
     }
 
-    public List<Salary> findSalariesInYear(String title, String year){
-        return titleRepository.getSalariesInYear(title, year);
+    public List<Salary> getSalariesInYearByJobTitle(String title, String year){
+        return titleRepository.getSalariesInYearByJobTitle(title, year);
     }
 }
