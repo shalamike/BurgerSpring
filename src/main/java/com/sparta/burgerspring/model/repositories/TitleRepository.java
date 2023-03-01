@@ -18,6 +18,6 @@ public interface TitleRepository extends JpaRepository<Title, TitleId> {
             "and year( s.toDate) = :year and year( s.toDate )= :year \n" +
             "and year(s.id.fromDate) = :year and year(s.id.fromDate) = :year \n" +
             "and t.id.title = :title")
-    List<Salary> getSalariesInYear(@Param("title") String title,@Param("year") String year);
+    List<Salary> getSalariesInYearByJobTitle(@Param("title") String title,@Param("year") String year);
 
 }
