@@ -11,7 +11,11 @@ import java.util.List;
 
 public interface TitleRepository extends JpaRepository<Title, TitleId> {
 
-    @Query(value = "select s from Salary s, Title t where t.empNo = s.empNo and s.toDate >= \'1999-01-01\' and  s.toDate <= \'1999-12-31\' and s.id.fromDate >= \'1999-01-01\' and s.id.fromDate <=\'1999-12-31\' and t.id.title = :title")
-    List<Salary> getSalariesInYear(@Param("title") String title);
+    @Query(value = "select s from Salary s, Title t \n" +
+            "where t.empNo =  s.empNo \n" +
+            " and year( s.toDate) = :year and year( s.toDate )<= :year \n" +
+            "and year(s.id.fromDate) >= :year and year(s.id.fromDate) <= :year \n" +
+            "and t.id.title = :title")
+    List<Salary> getSalariesInYear(@Param("title") String title,@Param("year") String year);
 
 }
