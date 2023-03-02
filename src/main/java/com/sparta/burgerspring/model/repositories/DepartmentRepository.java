@@ -15,4 +15,11 @@ public interface DepartmentRepository extends JpaRepository<Department, String> 
             "JOIN Department d ON de.deptNo = d.id " +
             "WHERE d.deptName = :deptName AND (s.id.fromDate <= :date AND s.toDate >= :date)")
     Double getListOfSalariesByDept(String deptName, LocalDate date);
+
+    @Query("SELECT e.firstName, e.lastName, d.deptName FROM Employee e " +
+            "JOIN DeptEmp de ON de.id.empNo = e.id " +
+            "JOIN Department d ON de.id.deptNo = d.id " +
+            "WHERE e.firstName = :firstName " +
+            "AND e.lastName = :lastName")
+    List<String> getListOfDeptsByName(String firstName, String lastName);
 }
