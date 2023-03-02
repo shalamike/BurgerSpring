@@ -10,15 +10,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 class SalaryRepositoryTest {
-@Autowired
-private SalaryRepository salaryRepository;
 
 
-@Test
-    @DisplayName("Test")
-void test (){
-    SalaryRepository salaryRepository;
-    List<Integer> salariesF=salaryRepository.findAll();
-    System.out.println(salariesF);
-}
 }
