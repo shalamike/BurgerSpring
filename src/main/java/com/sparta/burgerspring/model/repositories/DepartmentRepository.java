@@ -22,4 +22,5 @@ public interface DepartmentRepository extends JpaRepository<Department, String> 
             "WHERE e.firstName = :firstName " +
             "AND e.lastName = :lastName")
     List<String> getListOfDeptsByName(String firstName, String lastName);
+    
 }
