@@ -45,4 +45,8 @@ public class SalaryService {
         return salaryRepository.findSalariesAboveCertainSalary(salary);
     }
 
+    public Integer getEmployeeHighestSalaryByEmployeeId(Integer id){
+        return salaryRepository.highestSalaryOfGivenEmployeeId(id);
+    }
+
 }
