@@ -58,7 +58,9 @@ public class DeptEmp {
 
     @Override
     public String toString() {
-        return "\nDeptEmp{" +
+
+        return "DeptEmp{" +
+
                 "id=" + id +
                 ", deptNo=" + deptNo +
                 ", fromDate=" + fromDate +
