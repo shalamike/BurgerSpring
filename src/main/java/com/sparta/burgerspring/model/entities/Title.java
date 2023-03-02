@@ -45,4 +45,12 @@ public class Title {
         this.toDate = toDate;
     }
 
+    @Override
+    public String toString() {
+        return "Title{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", toDate=" + toDate +
+                '}';
+    }
 }

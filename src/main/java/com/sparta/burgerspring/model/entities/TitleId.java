@@ -59,4 +59,12 @@ public class TitleId implements Serializable {
         return Objects.hash(fromDate, empNo, title);
     }
 
+    @Override
+    public String toString() {
+        return "TitleId{" +
+                "empNo=" + empNo +
+                ", title='" + title + '\'' +
+                ", fromDate=" + fromDate +
+                '}';
+    }
 }

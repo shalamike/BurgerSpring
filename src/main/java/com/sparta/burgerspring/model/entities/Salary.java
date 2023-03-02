@@ -56,4 +56,13 @@ public class Salary {
         this.toDate = toDate;
     }
 
+    @Override
+    public String toString() {
+        return "Salary{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", salary=" + salary +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
