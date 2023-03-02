@@ -13,14 +13,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Service
-public class FindEmployeesService {
+public class EmployeesService {
     private final DepartmentRepository departmentRepository;
     private final DeptEmpRepository deptEmpRepository;
     private final EmployeeRepository employeeRepository;
     @Autowired
-    public FindEmployeesService(DepartmentRepository departmentRepository,
-                                DeptEmpRepository deptEmpRepository,
-                                EmployeeRepository employeeRepository) {
+    public EmployeesService(DepartmentRepository departmentRepository,
+                            DeptEmpRepository deptEmpRepository,
+                            EmployeeRepository employeeRepository) {
         this.departmentRepository = departmentRepository;
         this.deptEmpRepository = deptEmpRepository;
         this.employeeRepository = employeeRepository;
