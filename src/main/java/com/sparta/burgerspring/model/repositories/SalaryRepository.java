@@ -30,5 +30,8 @@ public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
     List<Employee> findSalariesAboveCertainSalary(@Param("salary")Integer salary);
 
 
+    @Query(value = "Select max(s.salary) from Employee e, Salary s where s.id.empNo = e.id and e.id = :empId ")
+    Integer highestSalaryOfGivenEmployeeId(@Param("empId") Integer empId);
+
 
 }
