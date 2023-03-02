@@ -13,7 +13,7 @@ public class DeptEmp {
     private DeptEmpId id;
 
     @MapsId("deptNo")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "dept_no", nullable = false)
     private Department deptNo;
@@ -58,7 +58,9 @@ public class DeptEmp {
 
     @Override
     public String toString() {
+
         return "DeptEmp{" +
+
                 "id=" + id +
                 ", deptNo=" + deptNo +
                 ", fromDate=" + fromDate +
