@@ -47,4 +47,11 @@ public class SalaryId implements Serializable {
         return Objects.hash(fromDate, empNo);
     }
 
+    @Override
+    public String toString() {
+        return "SalaryId{" +
+                "empNo=" + empNo +
+                ", fromDate=" + fromDate +
+                '}';
+    }
 }
