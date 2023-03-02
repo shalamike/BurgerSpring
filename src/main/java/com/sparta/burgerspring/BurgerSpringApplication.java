@@ -4,6 +4,7 @@ import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
 import com.sparta.burgerspring.model.repositories.DeptEmpRepository;
 import com.sparta.burgerspring.model.repositories.EmployeeRepository;
+import com.sparta.burgerspring.model.service.EmployeesService;
 import com.sparta.burgerspring.model.service.FindEmployeesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class BurgerSpringApplication {
         Department department=departmentRepository.findByDeptName("Development");
     logger.info(
 
-            new FindEmployeesService(
+            new EmployeesService(
             departmentRepository,
             deptEmpRepository ,
             employeeRepository).
