@@ -1,4 +1,4 @@
-package com.sparta.burgerspring.model.service;
+package com.sparta.burgerspring.service;
 
 import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.entities.DeptEmp;
