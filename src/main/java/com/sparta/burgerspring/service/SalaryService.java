@@ -1,21 +1,24 @@
 package com.sparta.burgerspring.service;
 
+import com.sparta.burgerspring.model.entities.Employee;
+import com.sparta.burgerspring.model.entities.Salary;
+import com.sparta.burgerspring.model.repositories.EmployeeRepository;
 import com.sparta.burgerspring.model.repositories.SalaryRepository;
-import com.sparta.burgerspring.model.repositories.TitleRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 
 public class SalaryService {
     private final SalaryRepository salaryRepository;
+    private final EmployeeRepository employeeRepository;
     @Autowired
-    public SalaryService(SalaryRepository salaryRepository) {
+    public SalaryService(SalaryRepository salaryRepository, EmployeeRepository employeeRepository) {
         this.salaryRepository = salaryRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     public String genderPaygap(String Department){
@@ -36,4 +39,10 @@ public class SalaryService {
         }
         return "The gender paygap in "+department+" is " + payGapPercentage*100 + " percent";
     }
+
+    public List<Employee>getEmployeeEarningAboveGivenSalary(int salary){
+
+        return salaryRepository.findSalariesAboveCertainSalary(salary);
+    }
+
 }
