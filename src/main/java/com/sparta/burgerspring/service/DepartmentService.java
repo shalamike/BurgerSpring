@@ -21,6 +21,13 @@ public class DepartmentService {
     }
 
     public String getListOfDeptNamesByEmp(String firstName, String lastName){
-        return departmentRepository.getListOfDeptsByName(firstName, lastName).toString();
+        if (firstName == null || lastName == null) {
+            throw new NullPointerException("Argument can't be null");
+        }
+        if (departmentRepository.getListOfDeptsByName(firstName, lastName).size() > 0) {
+            return departmentRepository.getListOfDeptsByName(firstName, lastName).toString();
+        } else {
+            return "Name not present in Database";
+        }
     }
 }
