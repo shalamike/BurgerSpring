@@ -7,16 +7,12 @@ import com.sparta.burgerspring.model.repositories.DeptEmpRepository;
 import com.sparta.burgerspring.model.repositories.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
-public class FindEmployeeServiceTest {
+public class EmployeeServiceTest {
     @Autowired
     DepartmentRepository departmentRepository;
     @Autowired
@@ -43,14 +39,5 @@ public class FindEmployeeServiceTest {
 //            departmentRepository.findByDeptName("Development").getId());
 //}
 
-    @Test
-    public void FindDepartmentGivenDepartmentName() {
-        String deptName = "Development";
-        Department developmentDepartment = new Department();
-        developmentDepartment.setId("d005");
-        developmentDepartment.setDeptName("Development");
-        Assertions.assertEquals(developmentDepartment.toString(),
-                departmentRepository.findByDeptName("Development").toString()
-        );
-    }
+
 }

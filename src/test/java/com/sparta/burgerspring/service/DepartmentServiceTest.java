@@ -1,5 +1,6 @@
 package com.sparta.burgerspring.service;
 
+import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -54,5 +55,17 @@ class DepartmentServiceTest {
         assertTrue(departmentRepository != null);
     }
 
-
+    @Test
+    @DisplayName("find department given department name called Testing")
+    public void findDepartmentGivenDepartmentName() {
+        String deptName = "Development";
+        Department developmentDepartment = new Department();
+        developmentDepartment.setId("d010");
+        developmentDepartment.setDeptName("Testing");
+        departmentRepository.save(developmentDepartment);
+        assertEquals(
+                departmentRepository.findByDeptName("Testing"),developmentDepartment
+        );
+        departmentRepository.deleteById("d010");
+    }
 }
