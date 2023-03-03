@@ -12,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class DepartmentServiceTest {
 
-    @Test
-    void getAvgSalByDeptNameAndDate() {
-    }
 
     @Autowired
     DepartmentService departmentService;
@@ -23,11 +20,13 @@ class DepartmentServiceTest {
 
     String testForFinance;
     String testForNull;
+    String testForNonExistent;
 
     @BeforeEach
     void setup() {
         testForNull = departmentService.getListOfDeptNamesByEmp("Uri", "Rullman");
         testForFinance = departmentService.getListOfDeptNamesByEmp("Uri", "Rullman");
+        testForNonExistent = departmentService.getListOfDeptNamesByEmp("Non", "Existent");
     }
 
     @Test
@@ -44,14 +43,32 @@ class DepartmentServiceTest {
 
     @Test
     @DisplayName("Check getListOfDept method doesnt return null")
-    void checkMethodDoesNotReturnNull(){
+    void checkMethodDoesNotReturnNull() {
         assertNotNull(departmentService.getListOfDeptNamesByEmp("Uri", "Rullman"));
     }
 
     @Test
     @DisplayName("Check that the repository isnt null")
-    void checkRepoIsNotNull(){
+    void checkRepoIsNotNull() {
         assertTrue(departmentRepository != null);
+    }
+
+    @Test
+    @DisplayName("Check that given a user who doesn't exist, returns 'Invalid input: Employee not found.'")
+    void givenANonExistentEmp_ReturnsEmptyArray() {
+        assertEquals("Invalid input: Employee not found.", testForNonExistent);
+    }
+
+    @Test
+    @DisplayName("Check that method returns list greater than 0 if employee is found")
+    void givenThatEmployeeExistsReturnNameAndDept() {
+        assertTrue(departmentRepository.getListOfDeptsByName("Uri", "Rullman").size() > 0);
+    }
+
+    @Test
+    @DisplayName("Check that method returns list with 2 elements for Uri Rullman")
+    void givenThatEmployeeExistsReturnCorrectListSize() {
+        assertTrue(departmentRepository.getListOfDeptsByName("Uri", "Rullman").size() == 2);
     }
 
 
