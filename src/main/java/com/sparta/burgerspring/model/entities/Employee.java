@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employees")
@@ -81,7 +82,6 @@ public class Employee {
     public String toString() {
 
         return "Employee{" +
-
                 "id=" + id +
                 ", birthDate=" + birthDate +
                 ", firstName='" + firstName + '\'' +
@@ -89,5 +89,18 @@ public class Employee {
                 ", gender='" + gender + '\'' +
                 ", hireDate=" + hireDate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id.equals(employee.id) && birthDate.equals(employee.birthDate) && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender) && hireDate.equals(employee.hireDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, birthDate, firstName, lastName, gender, hireDate);
     }
 }
