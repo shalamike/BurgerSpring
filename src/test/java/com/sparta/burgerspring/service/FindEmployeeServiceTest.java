@@ -1,5 +1,6 @@
 package com.sparta.burgerspring.service;
 
+
 import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
 import com.sparta.burgerspring.model.repositories.DeptEmpRepository;
@@ -43,14 +44,13 @@ public class FindEmployeeServiceTest {
 //}
 
     @Test
-    public void FindDepartmentGivenDepartmentName(){
-        String deptName="Development";
-        Department developmentDepartment=new Department();
+    public void FindDepartmentGivenDepartmentName() {
+        String deptName = "Development";
+        Department developmentDepartment = new Department();
         developmentDepartment.setId("d005");
         developmentDepartment.setDeptName("Development");
         Assertions.assertEquals(developmentDepartment.toString(),
                 departmentRepository.findByDeptName("Development").toString()
         );
-}
-
+    }
 }
