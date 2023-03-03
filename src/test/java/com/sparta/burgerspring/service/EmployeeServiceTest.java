@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 @SpringBootTest
 public class EmployeeServiceTest {
     @Autowired
@@ -20,7 +22,7 @@ public class EmployeeServiceTest {
     @Autowired
     EmployeeRepository employeeRepository;
     @Autowired
-    EmployeesService employeesService;
+    EmployeeService employeeService;
 
 //    @ParameterizedTest
 //    @CsvSource({
@@ -39,5 +41,8 @@ public class EmployeeServiceTest {
 //            departmentRepository.findByDeptName("Development").getId());
 //}
 
-
+@Test
+    void test(){
+    employeeService.getEmployeesByDateAndDepartment(LocalDate.parse())
+}
 }
