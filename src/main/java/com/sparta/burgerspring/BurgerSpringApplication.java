@@ -19,16 +19,7 @@ import java.time.LocalDate;
 
 @SpringBootApplication
 public class BurgerSpringApplication {
-    private Logger logger= LoggerFactory.getLogger(BurgerSpringApplication.class);
-    private final DeptEmpRepository deptEmpRepository;
 
-    public BurgerSpringApplication(DeptEmpRepository deptEmpRepository) {
-        this.deptEmpRepository = deptEmpRepository;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(BurgerSpringApplication.class, args);
-    }
 
 
     @Bean
