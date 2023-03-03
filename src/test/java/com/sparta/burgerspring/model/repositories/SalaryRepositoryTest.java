@@ -20,12 +20,57 @@ class SalaryRepositoryTest {
 
     @Autowired
     EmployeeRepository employeeRepository;
-
+    String[] Departments = {"Customer Service", "Development", "Finance", "Human Resources", "Marketing", "Production", "Quality Management", "Research", "Sales"};
     @Test
-    @DisplayName("testing if given id of 10032 eanred a max of 69539")
+    @DisplayName("testing if given id of 10032 earned a max of 69539")
     void testEmployeeEarnsMaxOf69539(){
         assertTrue(salaryRepository.highestSalaryOfGivenEmployeeId(10032) == 69539);
     }
 
-
+    @Test
+    @DisplayName("Test return of all male employees average salary is not Zero")
+    void returnAllMaleSalaryNotZero(){
+        assertTrue(salaryRepository.findSalaryByGender("M")!=0.0);
+    }
+    @Test
+    @DisplayName("Test return of all female employees average salary is not Zero")
+    void returnAllFemaleSalaryNotZero(){
+        assertTrue(salaryRepository.findSalaryByGender("F")!=0.0);
+    }
+    @Test
+    @DisplayName("Test return of female employees in each department average salary is not Zero")
+    void returnEachDeptFemaleSalaryNotZero(){
+        for(String s: Departments) {
+            assertTrue(salaryRepository.findSalaryByGenderAndDept("F",s) != 0.0);
+        }
+    }
+    @DisplayName("Test return of male employees in each department average salary is not Zero")
+    void returnEachDeptMaleSalaryNotZero(){
+        for(String s: Departments) {
+            assertTrue(salaryRepository.findSalaryByGenderAndDept("M",s) != 0.0);
+        }
+    }
+    @Test
+    @DisplayName("Test return of all male employees average salary is not Zero")
+    void returnAllMaleSalaryMoreThanZero(){
+        assertTrue(salaryRepository.findSalaryByGender("M")>0.0);
+    }
+    @Test
+    @DisplayName("Test return of all female employees average salary is not Zero")
+    void returnAllFemaleSalaryMoreThanZero(){
+        assertTrue(salaryRepository.findSalaryByGender("F")>0.0);
+    }
+    @Test
+    @DisplayName("Test return of female employees in each department average salary is not Zero")
+    void returnEachDeptFemaleSalaryMoreThanZero(){
+        for(String s: Departments) {
+            assertTrue(salaryRepository.findSalaryByGenderAndDept("F",s) > 0.0);
+        }
+    }
+    @DisplayName("Test return of male employees in each department average salary is not Zero")
+    void returnEachDeptMaleSalaryMoreThanZero(){
+        for(String s: Departments) {
+            assertTrue(salaryRepository.findSalaryByGenderAndDept("M",s) > 0.0);
+        }
+    }
 }

@@ -33,6 +33,7 @@ class SalaryServiceTest {
     List<Employee> employeeListEarningAboveSalary;
     @Autowired
     private SalaryRepository salaryRepository;
+    private String[] Departments = {"Customer Service", "Development", "Finance", "Human Resources", "Marketing", "Production", "Quality Management", "Research", "Sales"};
 
     @BeforeEach
     void setup() {
@@ -57,6 +58,24 @@ class SalaryServiceTest {
     void testForNonNullValueForGivenSalary(){
         assertTrue(employeeListEarningAboveSalary != null);
     }
+    @Test
+    @DisplayName("testing genderPaygap if statement sets the department to all departments on the parameter all")
+    void testForAllPaygapParameterWorking(){
+        assertTrue(salaryService.genderPaygap("All").contains("all departments"));
+    }
+    @ParameterizedTest
+    @DisplayName("testing genderPaygap all ignores case")
+    @ValueSource(strings = {"All","ALl","ALL","AlL","all","alL","aLl","aLL"})
+    void testForAllPaygapParameterIgnoringCase(String s){
+        assertTrue(salaryService.genderPaygap(s).contains("all departments"));
+    }
+    @Test
+    @DisplayName("testing genderPaygap if statement sets the department to the same department as the parameter")
+    void testForEachPaygapParameterWorking(){
+        for(String s: Departments) {
+            assertTrue(salaryService.genderPaygap(s).contains(s));
+        }
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {10001, 10004, 10027})
@@ -72,7 +91,7 @@ class SalaryServiceTest {
 //    }
 
     @Test
-    @DisplayName("testing if given id of 10032 eanred a max of 69539")
+    @DisplayName("testing if given id of 10032 earned a max of 69539")
     void testEmployeeEarnsMaxOf69539(){
         assertTrue(salaryService.getEmployeeHighestSalaryByEmployeeId(10032) == 69539);
     }
