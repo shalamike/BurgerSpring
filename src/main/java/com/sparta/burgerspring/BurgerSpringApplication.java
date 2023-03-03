@@ -5,7 +5,7 @@ import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
 import com.sparta.burgerspring.model.repositories.DeptEmpRepository;
 import com.sparta.burgerspring.model.repositories.EmployeeRepository;
-import com.sparta.burgerspring.model.service.EmployeesService;
+import com.sparta.burgerspring.service.EmployeesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +36,7 @@ public class BurgerSpringApplication {
     return args -> {
         Department department=departmentRepository.findByDeptName("Development");
     logger.info(
-
+//            departmentRepository.findByDeptName("Development").getId()
             new EmployeesService(
             departmentRepository,
             deptEmpRepository ,
@@ -45,7 +45,7 @@ public class BurgerSpringApplication {
                     LocalDate.parse("1986-07-24"),
                     LocalDate.parse("1986-07-24"),
                     "Development").toString()
-//            departmentRepository.findByDeptName("Development").getId().toString()
+
 //            deptEmpRepository.findByFromDateIsBeforeAndToDateAfterAndDeptNo(
 //                    LocalDate.parse(
 //                            "1986-07-24"),
