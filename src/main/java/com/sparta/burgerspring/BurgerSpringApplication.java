@@ -22,31 +22,31 @@ public class BurgerSpringApplication {
 
 
 
-    @Bean
-    public CommandLineRunner run(DepartmentRepository departmentRepository, DeptEmpRepository deptEmpRepository, EmployeeRepository employeeRepository){
-    return args -> {
-        Department department=departmentRepository.findByDeptName("Development");
-    logger.info(
-//            departmentRepository.findByDeptName("Development").getId()
-            new EmployeesService(
-            departmentRepository,
-            deptEmpRepository ,
-            employeeRepository).
-            getEmployeesByDateAndDepartment(
-                    LocalDate.parse("1986-07-24"),
-                    LocalDate.parse("1986-07-24"),
-                    "Development").toString()
-
-//            deptEmpRepository.findByFromDateIsBeforeAndToDateAfterAndDeptNo(
-//                    LocalDate.parse(
-//                            "1986-07-24"),
-//                    LocalDate.parse(
-//                            "1986-07-24"),
-//                    department).toString()
-    );
-
-    };
-
-}
+//    @Bean
+//    public CommandLineRunner run(DepartmentRepository departmentRepository, DeptEmpRepository deptEmpRepository, EmployeeRepository employeeRepository){
+//    return args -> {
+//        Department department=departmentRepository.findByDeptName("Development");
+//    logger.info(
+////            departmentRepository.findByDeptName("Development").getId()
+//            new EmployeesService(
+//            departmentRepository,
+//            deptEmpRepository ,
+//            employeeRepository).
+//            getEmployeesByDateAndDepartment(
+//                    LocalDate.parse("1986-07-24"),
+//                    LocalDate.parse("1986-07-24"),
+//                    "Development").toString()
+//
+////            deptEmpRepository.findByFromDateIsBeforeAndToDateAfterAndDeptNo(
+////                    LocalDate.parse(
+////                            "1986-07-24"),
+////                    LocalDate.parse(
+////                            "1986-07-24"),
+////                    department).toString()
+//    );
+//
+//    };
+//
+//}
 
 }

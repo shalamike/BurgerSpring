@@ -43,6 +43,12 @@ public class EmployeeServiceTest {
 
 @Test
     void test(){
-    employeeService.getEmployeesByDateAndDepartment(LocalDate.parse())
+
+    employeeService.getEmployeesByDateAndDepartment(LocalDate.parse());
+
+//    SELECT * FROM dept_emp de
+//    inner join departments d on de.dept_no=d.dept_no
+//    inner join employees e on e.emp_no=de.emp_no
+
 }
 }
