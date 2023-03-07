@@ -15,14 +15,14 @@ import java.time.LocalDate;
 
 @SpringBootTest
 public class EmployeeServiceTest {
-    @Autowired
-    DepartmentRepository departmentRepository;
-    @Autowired
-    DeptEmpRepository deptEmpRepository;
-    @Autowired
-    EmployeeRepository employeeRepository;
-    @Autowired
-    EmployeeService employeeService;
+//    @Autowired
+//    DepartmentRepository departmentRepository;
+//    @Autowired
+//    DeptEmpRepository deptEmpRepository;
+//    @Autowired
+//    EmployeeRepository employeeRepository;
+//    @Autowired
+//    EmployeeService employeeService;
 
 //    @ParameterizedTest
 //    @CsvSource({
@@ -41,14 +41,14 @@ public class EmployeeServiceTest {
 //            departmentRepository.findByDeptName("Development").getId());
 //}
 
-@Test
-    void test(){
-
-    employeeService.getEmployeesByDateAndDepartment(LocalDate.parse());
+//@Test
+//    void test(){
+//
+//    employeeService.getEmployeesByDateAndDepartment(LocalDate.parse());
 
 //    SELECT * FROM dept_emp de
 //    inner join departments d on de.dept_no=d.dept_no
 //    inner join employees e on e.emp_no=de.emp_no
 
-}
+//}
 }
