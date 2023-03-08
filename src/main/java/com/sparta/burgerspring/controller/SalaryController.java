@@ -68,7 +68,7 @@ public class SalaryController {
                     " " + employee.getFirstName() +
                     " " + employee.getLastName() +
                     " : " +
-                    salaryService.getEmployeeEarningAboveGivenSalary(employee.getId()));
+                    salaryService.getEmployeeHighestSalaryByEmployeeId(employee.getId()));
         }
         if(employees.size()>0){
             ResponseEntity<String>employeesAndSalariesResponse = new ResponseEntity<>(
