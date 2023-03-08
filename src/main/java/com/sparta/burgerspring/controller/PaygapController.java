@@ -26,9 +26,10 @@ public class PaygapController {
         httpHeaders.add("content-type","application/json");
         if(paygapInfo!=null){
             ResponseEntity<String> response = null;
-            response = new ResponseEntity<>("{\"message\": \""+paygapInfo+"\" }",httpHeaders, HttpStatus.OK);
+            response = new ResponseEntity<>("{\"message\": \""+paygapInfo+"\" }",
+                    httpHeaders, HttpStatus.OK);
             return response;
         }
-        return new ResponseEntity<>("{\"message\": \"That Department does not exist, possible parameters are; all, customer service, development, finance, human resources, marketing, production, quality management, research and sales\"}",httpHeaders,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("{\"message\": \"That Department does not exist, possible parameters are; \nall \ncustomer service \ndevelopment \nfinance \nhuman resources \nmarketing \nproduction \nquality management \nresearch \nsales\"}",httpHeaders,HttpStatus.NOT_FOUND);
     }
 }
