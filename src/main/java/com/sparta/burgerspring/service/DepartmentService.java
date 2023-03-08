@@ -35,18 +35,26 @@ public class DepartmentService {
         else{
             return "Department '" + deptName + "' not present in Database";
         }
-
-
     }
 
     public String getListOfDeptNamesByEmp(String firstName, String lastName) {
+        String result = "";
         if (firstName == null || lastName == null) {
             throw new NullPointerException("Arguments can't be null");
         }
         if (departmentRepository.getListOfDeptsByName(firstName, lastName).size() > 0) {
-            return departmentRepository.getListOfDeptsByName(firstName, lastName).toString();
+            for(String x : departmentRepository.getListOfDeptsByName(firstName, lastName)){
+                String[] words = x.split(",");
+                for(int i = 0; i < words.length; ){
+                    result += words[0] + " " + words[1] + ": " + words[2] + "\n";
+                    break;
+                }
+
+            }
         } else {
-            return "Invalid input: Employee not found.";
+            result = "Invalid input: Employee not found.";
         }
+
+        return result;
     }
 }
