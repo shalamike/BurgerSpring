@@ -18,6 +18,7 @@ public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
             "left join DeptEmp c on a.empNo.id = c.id.empNo " +
             "left join Department d on c.deptNo = d.id " +
             "where b.gender =:Gender and d.deptName = :dept")
+
     double findSalaryByGenderAndDept(String Gender, String dept);
     @Query(value = "select avg(a.salary)" +
             " from Salary a " +

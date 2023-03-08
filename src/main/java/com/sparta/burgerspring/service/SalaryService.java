@@ -26,6 +26,7 @@ public class SalaryService {
         double maleSalary = 0;
         double payGapPercentage = 0.0;
         String department = "";
+        list<Department> departments
         if(Department.toLowerCase().equals("all")){
             department = "all departments";
             femaleSalary = salaryRepository.findSalaryByGender("F");
