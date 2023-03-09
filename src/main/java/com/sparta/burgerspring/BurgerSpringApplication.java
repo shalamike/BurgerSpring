@@ -19,6 +19,9 @@ import java.time.LocalDate;
 
 @SpringBootApplication
 public class BurgerSpringApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BurgerSpringApplication.class, args);
+    }
 
 
 

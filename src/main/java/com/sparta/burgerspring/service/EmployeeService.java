@@ -25,7 +25,9 @@ public class EmployeeService {
         this.deptEmpRepository = deptEmpRepository;
     }
 
-    public ArrayList<Employee> getEmployeesByDateAndDepartment(LocalDate beofreDate, LocalDate afterDate, String deptName){
+    public ArrayList<Employee> getEmployeesByDateAndDepartment(LocalDate beofreDate,
+                                                               LocalDate afterDate,
+                                                               String deptName){
         Department dept=departmentRepository.findByDeptName(deptName);
         ArrayList<Employee> employees=new ArrayList<Employee>();
         for(DeptEmp deptEmp: deptEmpRepository.findByFromDateIsBeforeAndToDateAfterAndDeptNo( beofreDate,  afterDate, dept)){
