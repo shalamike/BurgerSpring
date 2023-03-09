@@ -1,14 +1,12 @@
 package com.sparta.burgerspring.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "departments")
 public class Department {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "C")
     @Column(name = "dept_no", nullable = false, length = 4)
     private String id;
 

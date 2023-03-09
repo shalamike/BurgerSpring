@@ -6,9 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface DepartmentRepository extends JpaRepository<Department, String> {
     Department findByDeptName(String deptName);
+
+    Department findDepartmentById(String id);
 
     @Query("SELECT AVG(s.salary) FROM DeptEmp de " +
             "JOIN Salary s ON s.empNo = de.id.empNo " +
