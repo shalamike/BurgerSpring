@@ -22,6 +22,20 @@ public class PaygapController {
     @GetMapping(value = "/paygap/{department}")
     public ResponseEntity<String> getPaygap(@PathVariable String department){
         String paygapInfo = salaryService.genderPaygap(department);
+        return getStringResponseEntity(paygapInfo);
+    }
+    @GetMapping(value = "/paygap/")
+    public ResponseEntity<String> getPaygapDefault(){
+        String paygapInfo = salaryService.genderPaygap("none");
+        return getStringResponseEntity(paygapInfo);
+    }
+    @GetMapping(value = "/paygap")
+    public ResponseEntity<String> getDefaultAllPaygap(){
+        String paygapInfo = salaryService.genderPaygap("none");
+        return getStringResponseEntity(paygapInfo);
+    }
+
+    private ResponseEntity<String> getStringResponseEntity(String paygapInfo) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type","application/json");
         if(paygapInfo!=null){
