@@ -54,22 +54,23 @@ public class DepartmentController {
         return "Department: " + department.getDeptName() + " added";
     }
 
-    @PutMapping(value = "/department/{deptName}")
-    public ResponseEntity<String> updateDepartmentName(@PathVariable String deptName, @RequestBody Department department){
-        Department foundDepartment = departmentRepository.findByDeptName(deptName);
+    @PutMapping(value = "/departments/{id}")
+    public ResponseEntity<String> updateDepartmentName(@PathVariable String id, @RequestBody String newDeptName){
+        Department foundDepartment = departmentRepository.findDepartmentById(id);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type", "application/json");
         if(foundDepartment != null){
-            ResponseEntity<String> response = new ResponseEntity<>("{\"message\";\"The department " + department.getDeptName() + " has been updated\"}", httpHeaders, HttpStatus.OK);
-            department.setDeptName(deptName);
-            departmentRepository.save(department);
+            ResponseEntity<String> response = new ResponseEntity<>("{\"message\";\"The department " + foundDepartment.getDeptName() + " has been updated\"}", httpHeaders, HttpStatus.OK);
+            foundDepartment.setDeptName(newDeptName);
+            departmentRepository.save(foundDepartment);
             return response;
         }
         else{
-            ResponseEntity<String> noAuthorToUpdate = new ResponseEntity<>("{\"message\";\"The department " + department.getDeptName() + " doesn't exist\"}", httpHeaders, HttpStatus.NOT_FOUND);
-            return noAuthorToUpdate;
+            return new ResponseEntity<>("{\"message\";\"The department " + id + " doesn't exist\"}", httpHeaders, HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 
 

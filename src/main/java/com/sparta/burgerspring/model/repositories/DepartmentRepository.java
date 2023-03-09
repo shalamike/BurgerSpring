@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<Department, String> {
     Department findByDeptName(String deptName);
 
-    Optional<Department> findDepartmentById(String id);
+    Department findDepartmentById(String id);
 
     @Query("SELECT AVG(s.salary) FROM DeptEmp de " +
             "JOIN Salary s ON s.empNo = de.id.empNo " +
