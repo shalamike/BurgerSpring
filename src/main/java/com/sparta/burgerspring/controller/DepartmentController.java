@@ -70,10 +70,21 @@ public class DepartmentController {
         }
     }
 
+    @DeleteMapping(value = "/departments/{id}")
+    public ResponseEntity<String> deleteAuthorById(@PathVariable String id){
+        Department foundDepartment = departmentRepository.findDepartmentById(id);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("content-type", "application/json");
+        if(foundDepartment != null){
+            ResponseEntity<String> responseEntity = new ResponseEntity<>("{\"message\";\"That department has been deleted\"}", httpHeaders, HttpStatus.OK);
+            departmentRepository.deleteById(id);
+            return responseEntity;
+        }
+        else {
+            return new ResponseEntity<>("{\"message\";\"That department doesn't exist\"}", httpHeaders, HttpStatus.NOT_FOUND);
+        }
 
-
-
-
+    }
 
 
 
