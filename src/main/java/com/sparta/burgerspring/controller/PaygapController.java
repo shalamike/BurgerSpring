@@ -38,12 +38,11 @@ public class PaygapController {
     private ResponseEntity<String> getStringResponseEntity(String paygapInfo) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type","application/json");
+        ResponseEntity<String> response = null;
         if(paygapInfo!=null){
-            ResponseEntity<String> response = null;
             response = new ResponseEntity<>("{\"message\": \""+paygapInfo+"\" }",
                     httpHeaders, HttpStatus.OK);
-            return response;
         }
-        return new ResponseEntity<>("{\"message\": \"That Department does not exist, possible parameters are; \nall \ncustomer service \ndevelopment \nfinance \nhuman resources \nmarketing \nproduction \nquality management \nresearch \nsales\"}",httpHeaders,HttpStatus.NOT_FOUND);
+        return response;
     }
 }
