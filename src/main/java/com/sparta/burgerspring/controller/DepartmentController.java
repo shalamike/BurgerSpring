@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +92,4 @@ public class DepartmentController {
     public String getAvgSalByDeptNameAndDate(@PathVariable String deptName, @PathVariable LocalDate date){
         return departmentService.getAvgSalByDeptNameAndDate(deptName, date);
     }
-
-
-
 }

@@ -54,9 +54,10 @@ public class DepartmentService {
             throw new NullPointerException("Arguments can't be null");
         }
         if (departmentRepository.getListOfDeptsByName(firstName, lastName).size() > 0) {
-            for (String x : departmentRepository.getListOfDeptsByName(firstName, lastName)) {
+            for(String x : departmentRepository.getListOfDeptsByName(firstName, lastName)){
                 String[] words = x.split(",");
-                for (int i = 0; i < words.length; ) {
+                for(int i = 0; i < words.length; ){
+
                     result += words[0] + " " + words[1] + ": " + words[2] + "\n";
                     break;
                 }

@@ -98,8 +98,7 @@ public class SalaryController {
                 salaryToUpdate.get().setToDate(toDateAsDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
                 salaryService.saveSalary(salaryToUpdate.get());
                 ResponseEntity<String> salaryUpdatedResponse = new ResponseEntity<>(
-//                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
-                        salaryToUpdate.get().toString(),
+                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
                         httpHeaders,
                         HttpStatus.OK
                 );
