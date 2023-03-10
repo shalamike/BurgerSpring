@@ -85,19 +85,21 @@ public class SalaryController {
         );
     }
 
-    @PutMapping(value = "/salary/{empId}/{fromDate}/{newSalary}")
-    ResponseEntity<String> salaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable Integer newSalary){
+    @PutMapping(value = "/salary/{empId}/{fromDate}/{toDate}")
+    ResponseEntity<String> salaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable String toDate){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type", "application/json");
         try {
+            Date toDateAsDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
             Date fromDateAsDate = new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
             Optional<Salary> salaryToUpdate = salaryService.getSalaryByEmpIdAndFromDate(empId, fromDateAsDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
             if (salaryToUpdate.isPresent()){
-                salaryToUpdate.get().setSalary(newSalary);
+                salaryToUpdate.get().setToDate(toDateAsDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
                 salaryService.saveSalary(salaryToUpdate.get());
                 ResponseEntity<String> salaryUpdatedResponse = new ResponseEntity<>(
-                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
+//                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
+                        salaryToUpdate.get().toString(),
                         httpHeaders,
                         HttpStatus.OK
                 );
@@ -111,8 +113,6 @@ public class SalaryController {
             }
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
         }
         return null;
     }
