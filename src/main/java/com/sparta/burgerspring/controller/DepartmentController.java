@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,8 +43,8 @@ public class DepartmentController {
         return departmentRepository.findAll();
     }
 
-    @GetMapping(value = "/departments/deptListByName")
-    public String getDepartments(@RequestParam String firstName, @RequestParam String lastName){
+    @GetMapping(value = "/departments/deptListByName/{firstName}/{lastName}")
+    public String getDepartments(@PathVariable String firstName, @PathVariable String lastName){
         return departmentService.getListOfDeptNamesByEmp(firstName, lastName);
     }
 
@@ -71,7 +72,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping(value = "/departments/{id}")
-    public ResponseEntity<String> deleteAuthorById(@PathVariable String id){
+    public ResponseEntity<String> deleteDeptById(@PathVariable String id){
         Department foundDepartment = departmentRepository.findDepartmentById(id);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type", "application/json");
@@ -84,6 +85,11 @@ public class DepartmentController {
             return new ResponseEntity<>("{\"message\";\"That department doesn't exist\"}", httpHeaders, HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @GetMapping(value = "departments/avgSalByDeptNameAndDate/{deptName}/{date}")
+    public String getAvgSalByDeptNameAndDate(@PathVariable String deptName, @PathVariable LocalDate date){
+        return departmentService.getAvgSalByDeptNameAndDate(deptName, date);
     }
 
 
