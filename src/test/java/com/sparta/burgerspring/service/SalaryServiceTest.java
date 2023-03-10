@@ -84,11 +84,7 @@ class SalaryServiceTest {
         assertTrue(employeeListEarningAboveSalary.contains(employeeRepository.getEmployeeById(id)));
     }
 
-//    @Test
-//    @DisplayName("testing if given id of 10032 eanred a max of 69539")
-//    void testEmployeeEarnsMaxOf69539(){
-//        assertTrue(salaryRepository.highestSalaryOfGivenEmployeeId(10032) == 69539);
-//    }
+
 
     @Test
     @DisplayName("testing if given id of 10032 earned a max of 69539")

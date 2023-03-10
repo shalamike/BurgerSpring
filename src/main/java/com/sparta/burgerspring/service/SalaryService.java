@@ -3,14 +3,18 @@ package com.sparta.burgerspring.service;
 import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.entities.Employee;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
+import com.sparta.burgerspring.model.entities.Salary;
+import com.sparta.burgerspring.model.entities.SalaryId;
 import com.sparta.burgerspring.model.repositories.EmployeeRepository;
 import com.sparta.burgerspring.model.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 
@@ -59,6 +63,17 @@ public class SalaryService {
 
     public Integer getEmployeeHighestSalaryByEmployeeId(Integer id){
         return salaryRepository.highestSalaryOfGivenEmployeeId(id);
+    }
+
+    public Optional<Salary> getSalaryByEmpIdAndFromDate(Integer id, LocalDate fromDate){
+        SalaryId salaryId = new SalaryId();
+        salaryId.setFromDate(fromDate);
+        salaryId.setEmpNo(id);
+        return salaryRepository.findById(salaryId);
+    }
+
+    public void saveSalary(Salary salary){
+        salaryRepository.save(salary);
     }
 
 }

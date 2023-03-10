@@ -69,12 +69,4 @@ public class DepartmentController {
             return new ResponseEntity<>("{\"message\";\"The department " + id + " doesn't exist\"}", httpHeaders, HttpStatus.NOT_FOUND);
         }
     }
-
-
-
-
-
-
-
-
 }
