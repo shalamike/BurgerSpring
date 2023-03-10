@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,12 +50,11 @@ public class SalaryController {
                     HttpStatus.OK);
             return employeePresentResponse;
         } else {
-            ResponseEntity<String> employeNotFound = new ResponseEntity<>(
+            return new ResponseEntity<>(
                     "{\"message\" : \"That employee doesn't exist\"}",
                     httpHeaders,
                     HttpStatus.NOT_FOUND
             );
-            return employeNotFound;
         }
     }
 
@@ -71,18 +72,48 @@ public class SalaryController {
                     salaryService.getEmployeeHighestSalaryByEmployeeId(employee.getId()));
         }
         if(employees.size()>0){
-            ResponseEntity<String>employeesAndSalariesResponse = new ResponseEntity<>(
-                    "{" + " All employees earning above " + salary + ":" + employeesAndSalaries + "}",
+            return new ResponseEntity<>(
+                    "{" + salary + ":" + employeesAndSalaries + "}",
                     httpHeaders,
                     HttpStatus.OK
             );
-            return employeesAndSalariesResponse;
         }
-        ResponseEntity<String> noEmployeesFound = new ResponseEntity<>(
+        return new ResponseEntity<>(
                 "{\"message\" : \"no Employees exist\"}",
                 httpHeaders,
                 HttpStatus.NOT_FOUND
         );
-        return noEmployeesFound;
+    }
+
+    @PutMapping(value = "/salary/{empId}/{fromDate}/{newSalary}")
+    ResponseEntity<String> SalaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable Integer newSalary){
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("content-type", "application/json");
+        try {
+            Date fromDateAsDate = new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
+            Optional<Salary> salaryToUpdate = salaryService.getSalaryByEmpIdAndFromDate(empId, fromDateAsDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+            if (salaryToUpdate.isPresent()){
+                salaryToUpdate.get().setSalary(newSalary);
+                salaryService.saveSalary(salaryToUpdate.get());
+                ResponseEntity<String> salaryUpdatedResponse = new ResponseEntity<>(
+                        objectMapper.writeValueAsString(salaryToUpdate.get()),
+                        httpHeaders,
+                        HttpStatus.OK
+                );
+                return salaryUpdatedResponse;
+            }else {
+                ResponseEntity<String> noSalaryToUpdate = new ResponseEntity<>(
+                        "{\"message\" : \"That salary doesn't exist to update\"}",
+                        httpHeaders,
+                        HttpStatus.NOT_FOUND);
+                return noSalaryToUpdate;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

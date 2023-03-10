@@ -34,4 +34,5 @@ public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
     Integer highestSalaryOfGivenEmployeeId(@Param("empId") Integer empId);
 
 
+
 }

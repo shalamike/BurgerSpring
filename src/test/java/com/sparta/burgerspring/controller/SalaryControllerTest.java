@@ -62,7 +62,8 @@ public class SalaryControllerTest {
         try {
             MvcResult resultSet = mvc.perform(MockMvcRequestBuilders.get("/salary/100027")) //this line creates the post request
                     .andDo(MockMvcResultHandlers.print()) //this line just prints the results of the post request
-                    .andExpect(MockMvcResultMatchers.status().is2xxSuccessful()).andReturn(); //this line is the assertion checking that thte satus code is = to any 200 success code
+                    .andExpect(MockMvcResultMatchers.status().is2xxSuccessful()) //this line is the assertion checking that thte satus code is = to any 200 success code
+                    .andReturn(); //and return returns the results as a MvcResults variable
 
             String content = resultSet.getResponse().getContentAsString();
 
