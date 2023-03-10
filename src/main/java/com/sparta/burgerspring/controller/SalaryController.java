@@ -86,7 +86,7 @@ public class SalaryController {
     }
 
     @PutMapping(value = "/salary/{empId}/{fromDate}/{newSalary}")
-    ResponseEntity<String> SalaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable Integer newSalary){
+    ResponseEntity<String> salaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable Integer newSalary){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type", "application/json");
         try {
@@ -97,7 +97,7 @@ public class SalaryController {
                 salaryToUpdate.get().setSalary(newSalary);
                 salaryService.saveSalary(salaryToUpdate.get());
                 ResponseEntity<String> salaryUpdatedResponse = new ResponseEntity<>(
-                        objectMapper.writeValueAsString(salaryToUpdate.get()),
+                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
                         httpHeaders,
                         HttpStatus.OK
                 );
