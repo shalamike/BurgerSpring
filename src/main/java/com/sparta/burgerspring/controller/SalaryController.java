@@ -97,7 +97,7 @@ public class SalaryController {
                 salaryToUpdate.get().setSalary(newSalary);
                 salaryService.saveSalary(salaryToUpdate.get());
                 ResponseEntity<String> salaryUpdatedResponse = new ResponseEntity<>(
-                        objectMapper.writeValueAsString(salaryToUpdate.get()),
+                        objectMapper.writeValueAsString(salaryToUpdate.get().toString()),
                         httpHeaders,
                         HttpStatus.OK
                 );
