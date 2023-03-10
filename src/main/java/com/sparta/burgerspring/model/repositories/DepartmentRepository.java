@@ -13,6 +13,10 @@ public interface DepartmentRepository extends JpaRepository<Department, String> 
 
     Department findDepartmentById(String id);
 
+    List<Department> findAll();
+
+
+
     @Query("SELECT AVG(s.salary) FROM DeptEmp de " +
             "JOIN Salary s ON s.empNo = de.id.empNo " +
             "JOIN Department d ON de.deptNo = d.id " +
