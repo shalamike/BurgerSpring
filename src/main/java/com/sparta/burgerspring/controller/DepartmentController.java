@@ -48,7 +48,7 @@ public class DepartmentController {
         return departmentService.getListOfDeptNamesByEmp(firstName, lastName);
     }
 
-    @PostMapping(value = "/department")
+    @PostMapping(value = "/department/createNewDept")
     public String setDepartment(@RequestBody Department department){
         departmentRepository.save(department);
 
