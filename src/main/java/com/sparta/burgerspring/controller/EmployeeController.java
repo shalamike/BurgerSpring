@@ -57,7 +57,7 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
                 );
                 return response;
         }
-        ResponseEntity<String> employeeNotFoundResponse = new ResponseEntity<>("{\"message\":\"new employee added\"}", httpHeaders, HttpStatus.ACCEPTED);
+        ResponseEntity<String> employeeNotFoundResponse = new ResponseEntity<>("{\"message\":\"new employee added\"}", httpHeaders, HttpStatus.OK);
         employeeRepository.save(employee);
         return employeeNotFoundResponse;
     }
@@ -129,7 +129,6 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         List<Employee> employees = employeeRepository.findByFirstNameAndAndLastName(firstName,lastName);
         return getStringResponseEntity(employees);
     }
-
     private ResponseEntity<String> getStringResponseEntity(List<Employee> employees) {
         new HttpHeaders().add("content-type", "application/json");
         if (employees.size()!=0) {
