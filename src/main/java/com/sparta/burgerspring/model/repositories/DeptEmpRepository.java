@@ -4,6 +4,7 @@ import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.entities.DeptEmp;
 import com.sparta.burgerspring.model.entities.DeptEmpId;
 import com.sparta.burgerspring.model.entities.Employee;
+import org.hibernate.annotations.SQLInsert;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +25,7 @@ public interface DeptEmpRepository extends JpaRepository<DeptEmp, DeptEmpId> {
     Integer getSizeOfDepartment(String deptName, LocalDate fromDate, LocalDate toDate);
 
     List<DeptEmp> findByFromDateIsBeforeAndToDateAfterAndDeptNo(LocalDate beforeDate, LocalDate afterDate, Department dept);
+
 
 
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "departments")
 public class Department {
@@ -37,5 +39,18 @@ public class Department {
                 "id='" + id + '\'' +
                 ", deptName='" + deptName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return id.equals(that.id) && deptName.equals(that.deptName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, deptName);
     }
 }

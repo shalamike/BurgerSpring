@@ -1,5 +1,6 @@
 package com.sparta.burgerspring.service;
 
+import com.sparta.burgerspring.model.entities.Department;
 import com.sparta.burgerspring.model.repositories.DepartmentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -62,6 +63,19 @@ class DepartmentServiceTest {
     }
 
     @Test
+    @DisplayName("find department given department name called Testing")
+    public void findDepartmentGivenDepartmentName() {
+        String deptName = "Development";
+        Department developmentDepartment = new Department();
+        developmentDepartment.setId("d010");
+        developmentDepartment.setDeptName("Testing");
+        departmentRepository.save(developmentDepartment);
+        assertEquals(
+                departmentRepository.findByDeptName("Testing"),developmentDepartment
+        );
+        departmentRepository.deleteById("d010");
+    }
+
     @DisplayName("Check that given a user who doesn't exist, returns 'Invalid input: Employee not found.'")
     void givenANonExistentEmp_ReturnsEmptyArray() {
         assertEquals("Invalid input: Employee not found.", testForNonExistent);
@@ -98,6 +112,7 @@ class DepartmentServiceTest {
     void givenThatArgsAreValidReturnData() {
         assertEquals("Average salary for the Sales department during '2000-01-01' is 83416.7841", departmentService.getAvgSalByDeptNameAndDate("Sales", LocalDate.of(2000,01,01)));
     }
+
 
 
 
