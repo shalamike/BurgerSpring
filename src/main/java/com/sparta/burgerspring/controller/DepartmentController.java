@@ -11,6 +11,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -39,9 +40,15 @@ public class DepartmentController {
         this.mapper = mapper;
     }
 
+//    @GetMapping(value = "/departments")
+//    public List<Department> getAllDepartments(){
+//        return departmentRepository.findAll();
+//    }
+
     @GetMapping(value = "/departments")
-    public List<Department> getAllDepartments(){
-        return departmentRepository.findAll();
+    public String getAllDepartments(Model model){
+        model.addAttribute("departments", departmentRepository.findAll());
+        return "getalldepartments";
     }
 
     @GetMapping(value = "/departments/deptListByName/{firstName}/{lastName}")
