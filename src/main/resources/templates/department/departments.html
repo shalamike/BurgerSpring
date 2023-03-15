@@ -5,8 +5,9 @@
     <title>Departments</title>
 </head>
 <body>
-<h1>Department Name</h1>
+<h1>Department Names</h1>
 <ul th:each="department : ${departments}">
+    <li th:text="${department.getDeptName()}"></li>
 
 </ul>
 
