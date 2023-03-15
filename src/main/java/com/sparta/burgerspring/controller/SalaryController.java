@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +37,7 @@ public class SalaryController {
         this.objectMapper = objectMapper;
     }
 
-    @GetMapping(value = "/salary/{id}")//this will return a single employee's highest salary
+    @GetMapping(value = "/post/salary/{id}")//this will return a single employee's highest salary
     public ResponseEntity<String> getSalaryById(@PathVariable Integer id){
         Optional<Employee> employee = employeeService.findEmployeeById(id);
         Integer employeesSalary =salaryService.getEmployeeHighestSalaryByEmployeeId(id);
@@ -58,7 +59,7 @@ public class SalaryController {
         }
     }
 
-    @GetMapping(value = "/salaries/{salary}")//this will return a list of employees
+    @GetMapping(value = "/post/salaries/{salary}")//this will return a list of employees
     public ResponseEntity<String> getEmployeesEarningAboveSalary(@PathVariable Integer salary){
         List<Employee> employees = salaryService.getEmployeeEarningAboveGivenSalary(salary);
         ArrayList<String> employeesAndSalaries = new ArrayList<>();
@@ -85,7 +86,7 @@ public class SalaryController {
         );
     }
 
-    @PutMapping(value = "/salary/{empId}/{fromDate}/{toDate}")
+    @PutMapping(value = "/post/salary/{empId}/{fromDate}/{toDate}")
     ResponseEntity<String> salaryToUpdate(@PathVariable int empId,@PathVariable String fromDate,@PathVariable String toDate){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("content-type", "application/json");
@@ -110,7 +111,7 @@ public class SalaryController {
                         HttpStatus.NOT_FOUND);
                 return noSalaryToUpdate;
             }
-        } catch (ParseException e) {
+        } catch (ParseException | JsonProcessingException e) {
             e.printStackTrace();
         }
         return null;
