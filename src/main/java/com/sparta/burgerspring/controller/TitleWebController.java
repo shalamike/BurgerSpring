@@ -43,31 +43,34 @@ public class TitleWebController {
     }
 
     @PostMapping("/createTitle")
-    public String createTitle(@ModelAttribute("titleToCreate")Title newTitle, @ModelAttribute("titleIdToCreate")TitleId newTitleId){
+    public String createTitle(@ModelAttribute("titleToCreate") Title newTitle, @ModelAttribute("titleIdToCreate") TitleId newTitleId) {
         newTitle.setId(newTitleId);
-        if(newTitle.getToDate() == null){
+        if (newTitle.getToDate() == null) {
             newTitle.setToDate(LocalDate.of(9999, 01, 01));
         }
         titleRepository.saveAndFlush(newTitle);
         return "title/add-title-success";
     }
 
-    @GetMapping(value = "/titles/delete/{id}/{title}")
-    public String delete(@PathVariable("id") Integer id, @PathVariable("title") String title){
-        TitleId titleId = new TitleId();
-        titleRepository.deleteById();
-        return "title/delete-success";
+    @GetMapping("titles/delete")
+    public String getTitleToDelete() {
+        return "title/title-delete-form";
     }
 
+    @PostMapping("/deleteTitle")
+    public String findTitleToDelete(@ModelAttribute("titleToDelete") TitleId foundTitle) {
+        return "redirect:/titles/delete/" + foundTitle.getEmpNo() + "/" + foundTitle.getTitle() + "/" + foundTitle.getFromDate();
+    }
 
-
-
-
-
-
-
-
-
+    @GetMapping("/titles/delete/{id}/{title}/{fromDate}")
+    public String deleteTitle(@PathVariable Integer id, @PathVariable String title, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate) {
+        TitleId titleId = new TitleId();
+        titleId.setEmpNo(id);
+        titleId.setTitle(title);
+        titleId.setFromDate(fromDate);
+        titleRepository.deleteById(titleId);
+        return "title/title-delete-success";
+    }
 
 
 }
