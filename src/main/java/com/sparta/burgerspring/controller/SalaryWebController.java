@@ -86,4 +86,30 @@ public class SalaryWebController {
     public String findSalaryToUpdate(@ModelAttribute("salaryToUpdate") SalaryId foundSalary) {
         return "redirect:/salary/edit/" + foundSalary.getEmpNo() + "/" + foundSalary.getFromDate();
     }
+
+    @GetMapping("salary/delete")
+    public String getSalaryToDelete(){
+        return "salary/salary-to-delete-form";
+    }
+
+    @PostMapping("/deletesalary")
+    public String findSalaryToDelete(@ModelAttribute("salaryToDelete") SalaryId foundSalary) {
+        return "redirect:/salary/delete/" + foundSalary.getEmpNo() + "/" + foundSalary.getFromDate();
+    }
+
+    @GetMapping("/salary/delete/{id}/{fromDate}")
+    public String deleteSalary(@PathVariable Integer id,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate){
+        SalaryId salaryId = new SalaryId();
+        salaryId.setEmpNo(id);
+        salaryId.setFromDate(fromDate);
+        salaryRepository.deleteById(salaryId);
+        return "salary/salary-delete-success";
+    }
+
+    @GetMapping("/salaries")
+    public String getAllSalaries(Model model) {
+        model.addAttribute("salaries", salaryRepository.findAll());
+        return "salary/salaries";
+    }
+
 }
