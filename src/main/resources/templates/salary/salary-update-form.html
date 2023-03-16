@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Salary</title>
+</head>
+<body>
+<form th:action="@{/updatesalary}" th:object="${salaryToEdit}" method="post">
+    <label for="empNo">Employee Number</label>
+    <input type="text" id="empNo" name="empNo" th:field="*{id.empNo}"/><br/>
+    <label for="salary">Salary</label>
+    <input type="text" id="salary" name="salary" th:field="*{salary}"/><br/>
+    <label for="fromDate">From Date</label>
+    <input type="text" id="fromDate" name="fromDate" th:field="*{id.fromDate}"/><br/>
+    <label for="toDate">To Date</label>
+    <input type="text" id="toDate" name="toDate" th:field="*{toDate}"/><br/>
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

@@ -1,15 +1,19 @@
 package com.sparta.burgerspring.controller;
 
 import com.sparta.burgerspring.model.entities.Salary;
+import com.sparta.burgerspring.model.entities.SalaryId;
 import com.sparta.burgerspring.model.repositories.SalaryRepository;
 import com.sparta.burgerspring.service.EmployeeService;
 import com.sparta.burgerspring.service.SalaryService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDate;
 
 @Controller
 public class SalaryWebController {
@@ -44,8 +48,42 @@ public class SalaryWebController {
     }
 
     @PostMapping("/createsalary")
-    public String createSalary(@ModelAttribute("salaryToCreate")Salary newSalary){
+    public String createSalary(@ModelAttribute("salaryToCreate")Salary newSalary, @ModelAttribute("salaryIdToCreate")SalaryId newSalaryId){
+        newSalary.setId(newSalaryId);
+        if(newSalary.getToDate() == null){
+            newSalary.setToDate(LocalDate.of(9999, 01, 01));
+        }
+        System.out.println(newSalaryId);
         salaryRepository.saveAndFlush(newSalary);
         return "salary/add-salary-success";
+    }
+
+    @GetMapping("/salary/edit/{id}/{fromDate}")
+    public String getUpdatedSalaryDetails(@PathVariable Integer id,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate, Model model) {
+        SalaryId salaryId = new SalaryId();
+        salaryId.setEmpNo(id);
+        salaryId.setFromDate(fromDate);
+        Salary salary = salaryRepository.findById(salaryId).orElse(null);
+        model.addAttribute("salaryToEdit", salary);
+        return "salary/salary-update-form";
+    }
+
+    @PostMapping("/updatesalary")
+    public String updateSalary(@ModelAttribute("updatedSalary")Salary updatedSalary, @ModelAttribute("salaryIdToCreate")SalaryId newSalaryId){
+        if(updatedSalary.getToDate() == null){
+            updatedSalary.setToDate(LocalDate.of(9999, 01, 01));
+        }
+        salaryRepository.saveAndFlush(updatedSalary);
+        return "salary/salary-update-success";
+    }
+
+    @GetMapping("/salary/edit")
+    public String getSalaryToUpdate(){
+        return "salary/salary-to-update-form";
+    }
+
+    @PostMapping("/findsalary")
+    public String findSalaryToUpdate(@ModelAttribute("salaryToUpdate") SalaryId foundSalary) {
+        return "redirect:/salary/edit/" + foundSalary.getEmpNo() + "/" + foundSalary.getFromDate();
     }
 }
