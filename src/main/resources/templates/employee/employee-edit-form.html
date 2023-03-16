@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+<!--localhost:5000/updateAuthor?id=3&fullName=Manish-->
+</head>
+<body>
+<div th:insert="fragments/style"></div>
+<h1>Employee Edit Form</h1>
+<form th:action="@{/updateEmployee}" th:object="${employeeToEdit}" method="post">
+<!--    <label for="id">ID</label>-->
+    <input type="hidden" id="id" name="id" th:field="*{id}"/><br/>
+
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/><br/>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/><br/>
+
+    <label for="gender">Gender</label>
+    <input type="text" id="gender" name="gender" th:field="*{gender}"/><br/>
+
+    <label for="birthDate">birthDate</label>
+    <input type="text" id="birthDate" name="birthDate" th:field="*{birthDate}"/><br/>
+
+    <label for="hireDate">hireDate</label>
+    <input type="text" id="hireDate" name="hireDate" th:field="*{hireDate}"/><br/>
+
+    <input type="submit" value="Update"/>
+</form>
+<!--<div th:insert="fragments/footer"></div>-->
+</body>
+</html>

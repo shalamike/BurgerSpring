@@ -113,6 +113,8 @@ public class SalaryController {
             }
         } catch (ParseException | JsonProcessingException e) {
             e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
