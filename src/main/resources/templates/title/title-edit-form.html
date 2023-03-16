@@ -23,15 +23,15 @@
 </head>
 <body>
 <h1>Title Edit Form</h1>
-<form th:action="@{/updateTitle}" th:object="${titleToEdit}" method="post">
+<form th:action="@{/updatetitle}" th:object="${titleToEdit}" method="post">
   <label for="id">Employee ID</label>
-  <input type="text" id="id" name="id" th:field="*{id.id}"/><br/>
+  <input type="text" id="id" name="id" th:field="*{id.empNo}"/><br/>
   <label for="title">Title</label>
   <input type="text" id="title" name="title" th:field="*{id.title}"/><br/>
   <label for="fromDate">From Date</label>
   <input type="text" id="fromDate" name="fromDate" th:field="*{id.fromDate}"/><br/>
   <label for="toDate">To Date</label>
-  <input type="text" id="toDate" name="toDate" th:field="*{id.toDate}"/><br/>
+  <input type="text" id="toDate" name="toDate" th:field="*{toDate}"/><br/>
   <input type="submit" value="Update"/>
 </form>
 </body>

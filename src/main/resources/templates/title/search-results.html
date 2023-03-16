@@ -39,7 +39,7 @@
         <td th:text="${title.id.title}"></td>
         <td th:text="${title.id.fromDate}"></td>
         <td th:text="${title.toDate}"></td>
-        <td><button>Edit</button></td>
+        <td><a th:href="@{/titles/edit/{id}/{title}/{fromDate}(id=${title.id.empNo}, title=${title.id.title}, fromDate=${title.id.fromDate})}"><button>Edit</button></a></td>
         <td><a th:href="@{/titles/delete/{id}/{title}/{fromDate}(id=${title.id.empNo}, title=${title.id.title}, fromDate=${title.id.fromDate})}"><button>Delete</button></a></td>
     </tr>
 </table>
