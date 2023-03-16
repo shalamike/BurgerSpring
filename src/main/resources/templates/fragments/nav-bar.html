@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+
+    </style>
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
 <div class="container-fluid">
-  <a class="navbar-brand" href="/"><img src="/images/topmodels.jpeg" alt="" width="40" height="40">Manish's Models</a>
+  <a class="navbar-brand" href="/"><img src="/images/BurgerLogo.jpeg" alt="" width="50" height="50" style="border-radius: 50px;"></a>
 <!--  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--    <span class="navbar-toggler-icon"></span>-->
 <!--  </button>-->
@@ -16,9 +19,6 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Menu
@@ -26,7 +26,7 @@
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/departments">Departments</a></li>
           <li><a class="dropdown-item" href="/employees">Employees</a></li>
-          <li><a class="dropdown-item" href="/departments/manager">Manager</a></li>
+          <li><a class="dropdown-item" href="/department-managers">Manager</a></li>
           <li><a class="dropdown-item" href="/paygap">Pay Gap</a></li>
           <li><a class="dropdown-item" href="/salary">Salary</a></li>
           <li><a class="dropdown-item" href="/titles">Title</a></li>
