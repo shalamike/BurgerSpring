@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/findAvgSalary}" method="post">
+<!--    <label for="id">ID</label>-->
+<!--    <input type="text" id="id" name="id"><br>-->
+
+    <label for="deptName">Dept Name</label>
+    <input type="text" id="deptName" name="deptName"/><br/>
+
+    <label for="date">Date</label>
+    <input type="text" id="date" name="date"/><br/>
+    <input type="submit" value="Find">
+</form>
+</body>
+</html>
