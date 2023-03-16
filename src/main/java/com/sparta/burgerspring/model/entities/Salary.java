@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Table(name = "salaries")
 public class Salary {
     @EmbeddedId
-    private SalaryId id;
+    private SalaryId id = new SalaryId();
 
     @MapsId("empNo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
