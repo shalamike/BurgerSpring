@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+
+</head>
+<body>
+<div th:insert="fragments/style"></div>
+<h1>Employee Find Form</h1>
+<form th:action="@{/findEmployee}" method="post">
+        <label for="id">ID</label>
+    <input type="text" id="id" name="id"/><br/>
+
+
+<!--    <label for="hireDate">Department Name</label>-->
+<!--    <input type="text" id="hireDate" name="hireDate"/><br/>-->
+
+    <input type="submit" value="Find"/>
+</form>
+
+
+<form th:action="@{/findEmployee}" method="post">
+
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" /><br/>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" /><br/>
+
+    <input type="submit" value="Find"/>
+</form>
+
+</body>
+</html>
+<!--<div th:insert="fragments/footer"></div>-->

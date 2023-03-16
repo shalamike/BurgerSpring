@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>Manager</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Manager ID</th>
+    <th>Department ID</th>
+    <th>From Date</th>
+    <th>To Date</th>
+
+  </tr>
+  </thead>
+  <tr th:each="manager : ${managers}">
+    <td th:text="${manager.getId()}"></td>
+    <td th:text="${manager.getDeptNo()}"></td>
+    <td th:text="${manager.getFromDate()}"></td>
+    <td th:text="${manager.getToDate()}"></td>
+  </tr>
+</table>
+</body>
+</html>
