@@ -1,6 +1,8 @@
 package com.sparta.burgerspring.controller;
 
 
+import com.sparta.burgerspring.model.entities.Salary;
+import com.sparta.burgerspring.model.entities.SalaryId;
 import com.sparta.burgerspring.model.entities.Title;
 import com.sparta.burgerspring.model.entities.TitleId;
 import com.sparta.burgerspring.model.repositories.TitleRepository;
@@ -72,5 +74,24 @@ public class TitleWebController {
         return "title/title-delete-success";
     }
 
+    @GetMapping("/titles/edit/{id}/{title}/{fromDate}")
+    public String getUpdatedSalaryDetails(@PathVariable Integer id,@PathVariable String title,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate, Model model) {
+        TitleId titleId = new TitleId();
+        titleId.setEmpNo(id);
+        titleId.setTitle(title);
+        titleId.setFromDate(fromDate);
+        Title updatedTitle = titleRepository.findById(titleId).orElse(null);
+        model.addAttribute("titleToEdit", updatedTitle);
+        return "title/title-edit-form";
+    }
+
+    @PostMapping("/updatetitle")
+    public String updateSalary(@ModelAttribute("updatedSalary")Title updatedTitle, @ModelAttribute("salaryIdToCreate")TitleId newTitleId){
+        if(updatedTitle.getToDate() == null){
+            updatedTitle.setToDate(LocalDate.of(9999, 01, 01));
+        }
+        titleRepository.saveAndFlush(updatedTitle);
+        return "title/title-edit-success";
+    }
 
 }
