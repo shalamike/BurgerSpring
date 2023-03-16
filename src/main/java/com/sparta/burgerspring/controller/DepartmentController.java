@@ -40,10 +40,10 @@ public class DepartmentController {
         this.mapper = mapper;
     }
 
-    @GetMapping(value = "get/departments")
-    public List<Department> getAllDepartments(){
-        return departmentRepository.findAll();
-    }
+//    @GetMapping(value = "get/departments")
+//    public List<Department> getAllDepartments(){
+//        return departmentRepository.findAll();
+//    }
 
     @GetMapping(value = "get/departments")
     public String getAllDepartments(Model model){
