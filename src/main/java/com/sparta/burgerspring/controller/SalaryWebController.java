@@ -8,10 +8,7 @@ import com.sparta.burgerspring.service.SalaryService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -28,11 +25,19 @@ public class SalaryWebController {
         this.salaryRepository = salaryRepository;
     }
 
+    @GetMapping("/salary")
+    public String salaryHome(){
+        return "salary/salary-home";
+    }
 
-    @GetMapping(value = "/salary/{id}")
-    public String getSalaryById(Model model, @PathVariable Integer id){
-        model.addAttribute("salary", salaryService.getEmployeeHighestSalaryByEmployeeId(id));
-        model.addAttribute("employee", employeeService.findEmployeeById(id));
+    @GetMapping("/salaries")
+    public String getSalaries(){
+        return "salary/salary-search-form";
+    }
+
+    @GetMapping("/salaries/search")
+    public String getSalaryDetails(Model model, @RequestParam Integer empNo) {
+        model.addAttribute("salaries", salaryRepository.getDetailsByEmpNo(empNo));
         return "salary/salary";
     }
 
@@ -106,10 +111,10 @@ public class SalaryWebController {
         return "salary/salary-delete-success";
     }
 
-    @GetMapping("/salaries")
-    public String getAllSalaries(Model model) {
-        model.addAttribute("salaries", salaryRepository.findAll());
-        return "salary/salaries";
-    }
+//    @GetMapping("/salaries")
+//    public String getAllSalaries(Model model) {
+//        model.addAttribute("salaries", salaryRepository.findAll());
+//        return "salary/salaries";
+//    }
 
 }

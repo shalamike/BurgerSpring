@@ -19,25 +19,25 @@
     </style>
 </head>
 <body>
-<h1>Employee Highest Salary</h1>
-<span th:if="${employee==null}">Employee not found</span>
-<span th:unless="${employee==null}">
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Surname</th>
+            <th>Employee Number</th>
             <th>Salary</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
-    <tr>
-        <td th:text="${employee.get().getId()}"></td>
-        <td th:text="${employee.get().getFirstName()}"></td>
-        <td th:text="${employee.get().getLastName()}"></td>
-        <td th:text="${salary}"></td>
-    </tr>
+  <tr th:each="salary : ${salaries}">
+    <td th:text="${salary.id.empNo}"></td>
+    <td th:text="${salary.salary}"></td>
+      <td th:text="${salary.id.fromDate}"></td>
+      <td th:text="${salary.toDate}"></td>
+          <td><a th:href="@{/salary/edit/{id}/{fromdate}(id=${salary.id.empNo},fromdate=${salary.id.fromDate})}">Edit</a></td>
+          <td><a th:href="@{/salary/delete/{id}/{fromdate}(id=${salary.id.empNo},fromdate=${salary.id.fromDate})}">Delete</a></td>
+  </tr>
 </table>
-</span>
 </body>
 </html>
