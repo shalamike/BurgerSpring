@@ -8,7 +8,7 @@
 <body>
 <div th:insert="fragments/style"></div>
 <h1>Employee Find Form</h1>
-<form th:action="@{/findEmployee}" method="post">
+<form th:action="@{/findEmployeeById}" method="post">
         <label for="id">ID</label>
     <input type="text" id="id" name="id"/><br/>
 
@@ -16,11 +16,11 @@
 <!--    <label for="hireDate">Department Name</label>-->
 <!--    <input type="text" id="hireDate" name="hireDate"/><br/>-->
 
-    <input type="submit" value="Find"/>
+    <input type="submit" value="FindById"/>
 </form>
 
 
-<form th:action="@{/findEmployee}" method="post">
+<form th:action="@{/findEmployeeByName}" method="post">
 
     <label for="firstName">First Name</label>
     <input type="text" id="firstName" name="firstName" /><br/>
@@ -28,7 +28,22 @@
     <label for="lastName">Last Name</label>
     <input type="text" id="lastName" name="lastName" /><br/>
 
-    <input type="submit" value="Find"/>
+    <input type="submit" value="FindByName"/>
+</form>
+
+
+<form th:action="@{/findEmployeeByDepartAndDate}" method="post">
+
+    <label for="deptName">Department Name</label>
+    <input type="text" id="deptName" name="deptName" /><br/>
+
+    <label for="fromDate">From Date</label>
+    <input type="text" id="fromDate" name="fromDate" /><br/>
+
+    <label for="toDate">End Date</label>
+    <input type="text" id="toDate" name="toDate" /><br/>
+
+    <input type="submit" value="FindByDeptAndDate"/>
 </form>
 
 </body>

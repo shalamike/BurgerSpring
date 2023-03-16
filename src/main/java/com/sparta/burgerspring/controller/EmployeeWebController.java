@@ -6,6 +6,7 @@ import com.sparta.burgerspring.model.entities.DeptEmp;
 import com.sparta.burgerspring.model.entities.DeptEmpId;
 import com.sparta.burgerspring.model.entities.Employee;
 import com.sparta.burgerspring.model.repositories.EmployeeRepository;
+import com.sparta.burgerspring.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +15,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class EmployeeWebController {
     private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
     @Autowired
-    public EmployeeWebController(EmployeeRepository employeeRepository) {
+    public EmployeeWebController(EmployeeRepository employeeRepository,EmployeeService employeeService) {
         this.employeeRepository = employeeRepository;
+        this.employeeService=employeeService;
     }
     //find all
     @GetMapping("/employees")
@@ -84,10 +88,7 @@ public class EmployeeWebController {
 //        }
 //        return "employee/employee";
 //    }
-//    @GetMapping("/employee/find")
-//    public String findEmployee() {
-//        return "employee/employee-find-form";
-//    }
+
 //    @PostMapping("/findEmployee")
 //    public String findEmployee(@ModelAttribute("employeeToFind")Employee foundEmployee
 ////            ,
@@ -114,41 +115,68 @@ public class EmployeeWebController {
 
 
 //Read
-@PostMapping("/findEmployee")
-public String findEmployee(@ModelAttribute("employeeToFind")Employee foundEmployee, Model model
+    @GetMapping("/employee/find")
+    public String findEmployee() {
+        return "employee/employee-find-form";
+    }
+@PostMapping("/findEmployeeById")
+public String findEmployee(@ModelAttribute("employeeToFind")Employee foundEmployee,Model model
 ) {
     BurgerSpringApplication.logger.info(foundEmployee.toString());
     Integer id=foundEmployee.getId();
-    String firstName=foundEmployee.getFirstName();
-    String lastName=foundEmployee.getLastName();
-
-    BurgerSpringApplication.logger.info(firstName);
-    BurgerSpringApplication.logger.info(lastName);
     List<Employee> employees;
     if(id!=null){
         Employee employee=employeeRepository.findById(id).orElse(null);
         employees=new ArrayList<Employee>();
         if (employee != null) {
             employees.add(employee);
+            model.addAttribute("employees",employees);
         }
-    } else if(!firstName.equals("") && !lastName.equals("")) {
-        employees=employeeRepository.findByFirstNameAndAndLastName(firstName,lastName);
-    } else if(!firstName.equals("")){
-        employees=employeeRepository.findByFirstName(firstName);
-        BurgerSpringApplication.logger.info(employees.toString());
-    } else if(!lastName.equals("")){
-        employees=employeeRepository.findByFirstName(lastName);
     } else {
-        employees=new ArrayList<Employee>();
-    }
-
-    if(employees.size()==0){
         model.addAttribute("employees",null);
-    } else {
-        model.addAttribute("employees",employees);
+
     }
 return "employee/employee";
 }
+    @PostMapping("/findEmployeeByName")
+    public String findEmployeeByName(@ModelAttribute("employeeToFind")Employee foundEmployee,Model model
+    ) {
+        BurgerSpringApplication.logger.info(foundEmployee.toString());
+        String firstName=foundEmployee.getFirstName();
+        String lastName=foundEmployee.getLastName();
+        BurgerSpringApplication.logger.info(firstName);
+        BurgerSpringApplication.logger.info(lastName);
+        List<Employee> employees;
+         if(!firstName.equals("") && !lastName.equals("")) {
+            employees=employeeRepository.findByFirstNameAndAndLastName(firstName,lastName);
+        } else if(!firstName.equals("")){
+            employees=employeeRepository.findByFirstName(firstName);
+            BurgerSpringApplication.logger.info(employees.toString());
+        } else if(!lastName.equals("")){
+            employees=employeeRepository.findByFirstName(lastName);
+        }else {
+            employees=new ArrayList<Employee>();
+        }
+
+        if(employees.size()==0){
+            model.addAttribute("employees",null);
+        } else {
+            model.addAttribute("employees",employees);
+        }
+        return "employee/employee";
+    }
+    @PostMapping("/findEmployeeByDepartAndDate")
+    public String findEmployeeByDeptNameAndDate(LocalDate fromDate, LocalDate toDate, String deptName,
+                               Model model
+    ) {
+        List<Employee> employees=employeeService.getEmployeesByDateAndDepartment(fromDate,toDate,deptName);
+        if(employees.size()==0){
+            model.addAttribute("employees",null);
+        } else {
+            model.addAttribute("employees",employees);
+        }
+        return "employee/employee";
+    }
     //update
     @GetMapping("/employee/edit/{id}")
     public String getEmployeeToEdit(@PathVariable Integer id, Model model) {
