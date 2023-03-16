@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary to update</title>
+</head>
+<body>
+<form th:action="@{/findsalary}" method="post">
+    <label for="empNo">Employee Number</label>
+    <input type="text" id="empNo" name="empNo"/><br/>
+    <label for="fromDate">From Date</label>
+    <input type="text" id="fromDate" name="fromDate"/><br/>
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

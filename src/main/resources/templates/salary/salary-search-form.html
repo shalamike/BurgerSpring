@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Details</title>
+</head>
+<body>
+<h1 style="text-align: center">Title Page</h1>
+<form style="text-align: center" th:action="@{/salaries/search}" method="get">
+    <label for="empNo">Employee Number</label>
+    <input type="number" id="empNo" name="empNo"/><br/>
+    <input style="text-align: center" type="submit" value="Search"/>
+</form>
+</body>
+</html>
