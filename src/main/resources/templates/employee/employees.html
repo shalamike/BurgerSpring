@@ -2,30 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Employee</title>
+    <title>Author</title>
 </head>
 <body>
-<span th:if="${employees==null}">Employee not found</span>
-<span th:unless="${employees==null}">
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>ID</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>Birthday</th>-->
-<!--        <th>Gender</th>-->
-<!--        <th>Hire Date</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tr>-->
-<!--        <td th:text="${employee.getId()}"></td>-->
-<!--        <td th:text="${employee.getFirstName()+' '+employee.getLastName()}"></td>-->
-<!--        <td th:text="${employee.getBirthDate()}"></td>-->
-<!--        <td th:text="${employee.getGender()}"></td>-->
-<!--        <td th:text="${employee.getHireDate()}"></td>-->
-<!--    </tr>-->
-<!--</table>-->
-    <table class="outer">
+<div th:insert="fragments/style"></div>
+<h1>Employees Details</h1>
+<table class="outer">
     <thead class="table-header">
     <tr>
         <th>ID</th>
@@ -49,5 +31,10 @@
     </tr>
     <div th:insert="fragments/footer"></div>
 </table>
+
+<button><a th:href="@{/employee/create}" >Create An Employee</a></button>
+<button><a th:href="@{/employee/find}">Find An Employee</a></button>
+
+<!--<div th:insert="fragments/footer :: alternate">This is some text</div>-->
 </body>
 </html>

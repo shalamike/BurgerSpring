@@ -49,6 +49,9 @@ public class EmployeeServiceTest {
 //    SELECT * FROM dept_emp de
 //    inner join departments d on de.dept_no=d.dept_no
 //    inner join employees e on e.emp_no=de.emp_no
+//    where dept_name="Customer Service" And
+//    from_date < "1985-01-21" and
+//    to_date > "1996-11-10"
 
 //}
 }
