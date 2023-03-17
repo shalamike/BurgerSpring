@@ -29,10 +29,13 @@ public class PaygapWebController {
         model.addAttribute("output", str);
         str = str.replaceAll("[^\\d.]", "");
         if(str.isEmpty()){
-            str = "";
+            str = "0";
         }
         Double percentage = Double.parseDouble(str);
-        if(percentage>2||percentage<-2){
+        if(str.equals("0")){
+            str = "Check one or all of our departments to see the paygap between genders";
+        }
+        else if(percentage>2||percentage<-2){
             str = "Oh no, there seems to be a substantial paygap";
         } else if (percentage<2&&percentage>-2) {
             str = "Congrats, there is no substantial paygap";
@@ -44,7 +47,7 @@ public class PaygapWebController {
     @GetMapping(value = "/paygap")
     public String getDefaultAllPaygap(Model model){
         model.addAttribute("departments", departmentRepository.findAll());
-        model.addAttribute("percentage", 0.0);
+        model.addAttribute("percentage", "Check one or all of our departments to see the paygap between genders");
         return "/paygap/paygap.html";
     }
 
