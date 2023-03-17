@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Department Employee Details</title>
+
+</head>
+<body>
+<div th:insert="fragments/style"></div>
+
+<h1>Department Employee Add Form</h1>
+<form th:action="@{/createDeptEmp}" method="post">
+  <label for="empNo">Employee ID</label>
+  <input type="text" id="empNo" name="empNo"/><br/>
+
+  <label for="deptNo">Department ID</label>
+  <input type="text" id="deptNo" name="deptNo"/><br/>
+
+  <label for="fromDate">From Date</label>
+  <input type="text" id="fromDate" name="fromDate"/><br/>
+
+  <label for="toDate">To Date</label>
+  <input type="text" id="toDate" name="toDate"/><br/>
+
+  <input type="submit" value="Create"/>
+</form>
+<!--<div th:insert="fragments/footer"></div>-->
+</body>
+</html>

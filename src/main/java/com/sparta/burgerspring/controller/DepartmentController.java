@@ -11,6 +11,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -39,24 +40,30 @@ public class DepartmentController {
         this.mapper = mapper;
     }
 
-    @GetMapping(value = "/departments")
-    public List<Department> getAllDepartments(){
-        return departmentRepository.findAll();
+//    @GetMapping(value = "get/departments")
+//    public List<Department> getAllDepartments(){
+//        return departmentRepository.findAll();
+//    }
+
+    @GetMapping(value = "get/departments")
+    public String getAllDepartments(Model model){
+        model.addAttribute("departments", departmentRepository.findAll());
+        return "getalldepartments";
     }
 
-    @GetMapping(value = "/departments/deptListByName/{firstName}/{lastName}")
+    @GetMapping(value = "get/departments/deptListByName/{firstName}/{lastName}")
     public String getDepartments(@PathVariable String firstName, @PathVariable String lastName){
         return departmentService.getListOfDeptNamesByEmp(firstName, lastName);
     }
 
-    @PostMapping(value = "/department/createNewDept")
+    @PostMapping(value = "post/department/createNewDept")
     public String setDepartment(@RequestBody Department department){
         departmentRepository.save(department);
 
         return "Department: " + department.getDeptName() + " added";
     }
 
-    @PutMapping(value = "/departments/{id}")
+    @PutMapping(value = "put/departments/{id}")
     public ResponseEntity<String> updateDepartmentName(@PathVariable String id, @RequestBody String newDeptName){
         Department foundDepartment = departmentRepository.findDepartmentById(id);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -72,7 +79,7 @@ public class DepartmentController {
         }
     }
 
-    @DeleteMapping(value = "/departments/{id}")
+    @DeleteMapping(value = "delete/departments/{id}")
     public ResponseEntity<String> deleteDeptById(@PathVariable String id){
         Department foundDepartment = departmentRepository.findDepartmentById(id);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -88,7 +95,7 @@ public class DepartmentController {
 
     }
 
-    @GetMapping(value = "departments/avgSalByDeptNameAndDate/{deptName}/{date}")
+    @GetMapping(value = "get/departments/avgSalByDeptNameAndDate/{deptName}/{date}")
     public String getAvgSalByDeptNameAndDate(@PathVariable String deptName, @PathVariable LocalDate date){
         return departmentService.getAvgSalByDeptNameAndDate(deptName, date);
     }

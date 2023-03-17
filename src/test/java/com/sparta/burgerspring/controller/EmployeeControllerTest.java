@@ -43,7 +43,7 @@ public class EmployeeControllerTest {
     @DisplayName("check that employee by id 10001 returns 200")
     void checkThatGetEmployeeByIdReturns200() {
         try {
-            mvc.perform(get("/employee/10001"))
+            mvc.perform(get("api/employee/10001"))
                     .andDo(print())
                     .andExpect(status().is2xxSuccessful());
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class EmployeeControllerTest {
     @DisplayName("check that employee by dept name and period returns 200")
     void checkThatGetEmployeeByDeptNameAndPeriodReturns200() {
         try {
-            mvc.perform(get("/employees/date_dept?beforeDate=1986-07-24&afterDate=1986-07-24&deptName=Development"))
+            mvc.perform(get("api/employees/date_dept?beforeDate=1986-07-24&afterDate=1986-07-24&deptName=Development"))
                     .andDo(print())
                     .andExpect(status().is2xxSuccessful());
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class EmployeeControllerTest {
     @DisplayName("check that employees by first name returns 200")
     void checkThatGetEmployeeByFirstNameReturns200() {
         try {
-            mvc.perform(get("/employees/firstName/Georgi"))
+            mvc.perform(get("api/employees/firstName/Georgi"))
                     .andDo(print())
                     .andExpect(status().is2xxSuccessful());
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class EmployeeControllerTest {
     @DisplayName("check that employees by last name returns 200")
     void checkThatGetEmployeeByLastNameReturns200() {
         try {
-            mvc.perform(get("/employees/lastName/Facello"))
+            mvc.perform(get("api/employees/lastName/Facello"))
                     .andDo(print())
                     .andExpect(status().is2xxSuccessful());
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class EmployeeControllerTest {
     @DisplayName("check that employees by full name returns 200")
     void checkThatGetEmployeeByFullnameReturns200() {
         try {
-            mvc.perform(get("/employees/fullName/Georgi/Facello"))
+            mvc.perform(get("api/employees/fullName/Georgi/Facello"))
                     .andDo(print())
                     .andExpect(status().is2xxSuccessful());
         } catch (Exception e) {
@@ -111,7 +111,7 @@ public class EmployeeControllerTest {
         employeeTest.setBirthDate(LocalDate.parse("1046-05-04"));
         try {
             MvcResult result=mvc.perform( MockMvcRequestBuilders
-                            .post("/employee")
+                            .post("api/employee")
                             .content(objectMapper.writeValueAsString(employeeTest))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -133,7 +133,7 @@ public class EmployeeControllerTest {
         employeeTest.setBirthDate(LocalDate.parse("1046-05-04"));
         try {
             MvcResult result=mvc.perform( MockMvcRequestBuilders
-                            .put("/employee/9999")
+                            .put("api/employee/9999")
                             .content(objectMapper.writeValueAsString(employeeTest))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -154,7 +154,7 @@ public class EmployeeControllerTest {
         employeeTest.setBirthDate(LocalDate.parse("1046-05-04"));
         try {
             MvcResult result=mvc.perform( MockMvcRequestBuilders
-                            .put("/employee/10001")
+                            .put("api/employee/10001")
                             .content(objectMapper.writeValueAsString(employeeTest))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))

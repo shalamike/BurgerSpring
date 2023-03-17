@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Employees</title>
+</head>
+<body>
+<div th:insert="fragments/style"></div>
+<h1>Department With Employees Details</h1>
+<table class="outer">
+    <thead class="table-header">
+    <tr>
+        <th>Employee Number</th>
+        <th>Department Number</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr class="outer" th:each="deptEmp : ${deptEmps}">
+        <td th:text="${deptEmp.id.empNo}"></td>
+        <td th:text="${deptEmp.deptNo.id}"></td>
+        <td th:text="${deptEmp.fromDate}"></td>
+        <td th:text="${deptEmp.toDate}"></td>
+
+        <td><a th:href="@{/deptEmp/edit/{deptId}/{empId}(deptId=${deptEmp.deptNo.id},empId=deptEmp.deptNo.id)}">Edit</a></td>
+        <td><a th:href="@{/deptEmp/delete/{deptId}/{empId}(deptId=${deptEmp.deptNo.id},empId=deptEmp.deptNo.id)}">Delete</a></td>
+    </tr>
+</table>
+
+<button><a th:href="@{/deptEmp/create}" >Create A DeptEmp</a></button>
+<button><a th:href="@{/deptEmp/find}">Find A DeptEmp</a></button>
+
+<!--<div th:insert="fragments/footer :: alternate">This is some text</div>-->
+</body>
+</html>

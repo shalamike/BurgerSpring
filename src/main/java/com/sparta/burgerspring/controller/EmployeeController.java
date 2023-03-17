@@ -29,7 +29,7 @@ public class EmployeeController {
         this.mapper = mapper;
     }
 
-@GetMapping(value="/employee/{id}")
+@GetMapping(value="api/employee/{id}")
 public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
     Optional<Employee> employee= employeeRepository.findById(id);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -47,7 +47,7 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         return employeeNotFoundResponse;
 }
 
-    @PostMapping(value="/employee")
+    @PostMapping(value="api/employee")
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
 //        Optional<Employee> employeeInTable= employeeRepository.findById(employee.getId());
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -62,7 +62,7 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         return employeeNotFoundResponse;
     }
 
-    @PutMapping(value ="/employee/{id}")
+    @PutMapping(value ="api/employee/{id}")
     public ResponseEntity<String> updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
 
         Optional<Employee> updatedOptionalEmployee = employeeRepository.findById(id);
@@ -85,7 +85,7 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         return employeeNotFoundResponse;
     }
 
-    @DeleteMapping(value ="/employee/{id}")
+    @DeleteMapping(value ="api/employee/{id}")
     public ResponseEntity<String> updateEmployee(@PathVariable Integer id) {
 
         Optional<Employee> updatedOptionalEmployee = employeeRepository.findById(id);
@@ -101,7 +101,7 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         return employeeNotFoundResponse;
     }
 
-    @GetMapping(value="/employees/date_dept")
+    @GetMapping(value="api/employees/date_dept")
     public ResponseEntity<String> getEmployeesByDatesAndDeptName(@RequestParam String beforeDate,
                                                         @RequestParam  String afterDate,
                                                         @RequestParam String deptName){
@@ -111,19 +111,19 @@ public ResponseEntity<String> getEmployeeById(@PathVariable Integer id) {
         return getStringResponseEntity(employees);
 //        http://localhost:8080/employees/date_dept?beforeDate=1986-07-24&afterDate=1986-07-24&deptName=Development
 };
-    @GetMapping(value="/employees/firstName/{firstName}")
+    @GetMapping(value="api/employees/firstName/{firstName}")
     public ResponseEntity<String>  obtainEmployeesByFirstName(@PathVariable String firstName){
         List<Employee> employees=employeeRepository.findByFirstName(firstName);
         return getStringResponseEntity(employees);
     }
 
-    @GetMapping(value="/employees/lastName/{lastName}")
+    @GetMapping(value="api/employees/lastName/{lastName}")
     public ResponseEntity<String>  obtainEmployeesByLastName(@PathVariable String lastName) {
         List<Employee> employees = employeeRepository.findByLastName(lastName);
         return getStringResponseEntity(employees);
     }
 
-    @GetMapping(value="/employees/fullName/{firstName}/{lastName}")
+    @GetMapping(value="api/employees/fullName/{firstName}/{lastName}")
     public ResponseEntity<String>  obtainEmployeesByFullName(@PathVariable String firstName,
                                                             @PathVariable  String lastName) {
         List<Employee> employees = employeeRepository.findByFirstNameAndAndLastName(firstName,lastName);

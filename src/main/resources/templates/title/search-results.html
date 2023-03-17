@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 2px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: saddlebrown;
+        }
+    </style>
+</head>
+<body>
+<h1>search results</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Employee Number</th>
+        <th>Title</th>
+        <th>From date</th>
+        <th>To date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr th:each="title : ${titles}">
+        <td th:text="${title.id.empNo}"></td>
+        <td th:text="${title.id.title}"></td>
+        <td th:text="${title.id.fromDate}"></td>
+        <td th:text="${title.toDate}"></td>
+        <td><a th:href="@{/titles/edit/{id}/{title}/{fromDate}(id=${title.id.empNo}, title=${title.id.title}, fromDate=${title.id.fromDate})}"><button>Edit</button></a></td>
+        <td><a th:href="@{/titles/delete/{id}/{title}/{fromDate}(id=${title.id.empNo}, title=${title.id.title}, fromDate=${title.id.fromDate})}"><button>Delete</button></a></td>
+    </tr>
+</table>
+
+</body>
+</html>

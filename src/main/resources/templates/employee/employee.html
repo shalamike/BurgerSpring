@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employee</title>
 </head>
 <body>
+<span th:if="${employees==null}">Employee not found</span>
+<span th:unless="${employees==null}">
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Birthday</th>-->
+<!--        <th>Gender</th>-->
+<!--        <th>Hire Date</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tr>-->
+<!--        <td th:text="${employee.getId()}"></td>-->
+<!--        <td th:text="${employee.getFirstName()+' '+employee.getLastName()}"></td>-->
+<!--        <td th:text="${employee.getBirthDate()}"></td>-->
+<!--        <td th:text="${employee.getGender()}"></td>-->
+<!--        <td th:text="${employee.getHireDate()}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+    <table class="outer">
+    <thead class="table-header">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Gender</th>
+        <th>Hire Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr class="outer" th:each="employee : ${employees}">
+        <td th:text="${employee.getId()}"></td>
+        <td th:text="${employee.getFirstName()+' '+employee.getLastName()}"></td>
+        <td th:text="${employee.getBirthDate()}"></td>
+        <td th:text="${employee.getGender()}"></td>
+        <td th:text="${employee.getHireDate()}"></td>
 
+        <td><a th:href="@{/employee/edit/{id}(id=${employee.id})}">Edit</a></td>
+        <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}">Delete</a></td>
+    </tr>
+    <div th:insert="fragments/footer"></div>
+</table>
 </body>
 </html>

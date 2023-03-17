@@ -25,7 +25,7 @@ public interface DeptEmpRepository extends JpaRepository<DeptEmp, DeptEmpId> {
     Integer getSizeOfDepartment(String deptName, LocalDate fromDate, LocalDate toDate);
 
     List<DeptEmp> findByFromDateIsBeforeAndToDateAfterAndDeptNo(LocalDate beforeDate, LocalDate afterDate, Department dept);
-
+    DeptEmp findDeptEmpByDeptNoAndId(Department department, DeptEmpId deptEmpId);
 
 
 }
