@@ -8,24 +8,18 @@
 <body>
 <div th:insert="fragments/style"></div>
 <h1>Employee Edit Form</h1>
-<form th:action="@{/updateEmployee}" th:object="${employeeToEdit}" method="post">
-<!--    <label for="id">ID</label>-->
-    <input type="hidden" id="id" name="id" th:field="*{id}"/><br/>
+<form th:action="@{/updateDeptEmp}" th:object="${employeeToEdit}" method="post">
+    <label for="empNo">Employee ID</label>
+    <input type="text" id="empNo" name="empNo"/><br/>
 
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/><br/>
+    <label for="deptNo">Department ID</label>
+    <input type="text" id="deptNo" name="deptNo"/><br/>
 
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/><br/>
+    <label for="fromDate">From Date</label>
+    <input type="text" id="fromDate" name="fromDate"/><br/>
 
-    <label for="gender">Gender</label>
-    <input type="text" id="gender" name="gender" th:field="*{gender}"/><br/>
-
-    <label for="birthDate">birthDate</label>
-    <input type="text" id="birthDate" name="birthDate" th:field="*{birthDate}"/><br/>
-
-    <label for="hireDate">hireDate</label>
-    <input type="text" id="hireDate" name="hireDate" th:field="*{hireDate}"/><br/>
+    <label for="toDate">To Date</label>
+    <input type="text" id="toDate" name="toDate"/><br/>
 
     <input type="submit" value="Update"/>
 </form>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2ea35bdb18.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        h1 {
+            font-family: 'Raleway', sans-serif;
+            -webkit-text-stroke: 3px #36395A;
+            text-align: center;
+        }
+
+        .flex-box {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            height: 70%;
+            width: 100%;
+        }
+
+        .homepage-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 50px;
+        }
+        .btn {
+            box-shadow: #ADB6C4 0px 3px;
+            /*border: black 2px;*/
+        }
+
+        body {
+            background-image: url('/images/background-image.jpeg');
+            background-size: cover;
+        }
+
+    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="~{/fragments/nav-bar :: navbar}"></div>
+<div class="flex-box">
+    <h1 style="color: #FFEC5E">Manish's Next Top Models</h1>
+    <div class="homepage-buttons">
+        <a class="btn btn-light" type="button" th:href="@{/departments}">Departments  <i class="fa-solid fa-building"></i></a>
+        <a class="btn btn-light" type="button" th:href="@{/employees}">Employees  <i class="fa-solid fa-user"></i></a>
+        <a class="btn btn-light" type="button" th:href="@{/department-managers}">Managers  <i class="fa-solid fa-handshake-simple"></i></a>
+        <a class="btn btn-light" type="button" th:href="@{/paygap}">Pay Gaps  <i class="fa-solid fa-arrows-left-right-to-line"></i></a>
+        <a class="btn btn-light" type="button" th:href="@{/salary}">Salaries  <i class="fa-solid fa-sterling-sign"></i></a>
+        <a class="btn btn-light" type="button" th:href="@{/title}">Job Titles  <i class="fa-solid fa-pen-fancy"></i></a>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

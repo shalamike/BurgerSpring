@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      /*.navbar-translucent {*/
+      /*  background-color: rgba(255, 255, 255, 1);*/
+      /*}*/
+
+      /*.navbar-transparent .navbar-nav .nav-link {*/
+      /*  color: white; !* replace with your desired opaque color *!*/
+      /*}*/
+    </style>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark shadow-5-strong" >
+<div class="container-fluid">
+  <a class="navbar-brand" href="/"><img src="/images/BurgerLogo.jpeg" alt="" width="50" height="50" style="border-radius: 50px;"></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Menu
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/departments">Departments</a></li>
+          <li><a class="dropdown-item" href="/employees">Employees</a></li>
+          <li><a class="dropdown-item" href="/department-managers">Manager</a></li>
+          <li><a class="dropdown-item" href="/paygap">Pay Gap</a></li>
+          <li><a class="dropdown-item" href="/salary">Salary</a></li>
+          <li><a class="dropdown-item" href="/titles">Title</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+</body>
+</html>
