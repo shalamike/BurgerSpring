@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <style>
+        td{
+            padding: 10px;
+            width: auto;
+            align-self: center;
+            border-left: 5px white;
+            border-right: 5px white;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Paygap Finder</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #333745">
 <div th:insert="~{/fragments/nav-bar :: navbar}"></div>
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
-        Departments
-    </button>
-    <ul class="dropdown-menu">
-        <li><a th:each="depts:${departments}" class="dropdown-item" th:href="@{/paygap/{department}(department = ${depts.DeptName})}" th:text="${depts.DeptName}"}></a></li>
-    </ul>
-    <label th:text="${output}"></label>
-</div>
+<table style="width: auto;align-content: center;">
+    <thead>
+    <td>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
+                Departments
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" th:href="@{/paygap/all}" th:text="All"}></a></li>
+                <li><a th:each="depts:${departments}" class="dropdown-item" th:href="@{/paygap/{department}(department = ${depts.DeptName})}" th:text="${depts.DeptName}"}></a></li>
+            </ul>
+    </td>
+        <td style="color: #dddddd" th:text="${output}"></td>
+        </thead>
+</table>
+<table style="width: available; padding: 25px; align-content: center;margin-left: auto; margin-right: auto">
+    <td style="color: #dddddd; font-size: 2rem" th:text="${percentage}"></td>
+</table>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
