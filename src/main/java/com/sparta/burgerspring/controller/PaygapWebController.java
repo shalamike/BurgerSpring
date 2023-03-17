@@ -29,7 +29,7 @@ public class PaygapWebController {
         model.addAttribute("output", str);
         str = str.replaceAll("[^\\d.]", "");
         if(str.isEmpty()){
-            str = "0";
+            str = "";
         }
         Double percentage = Double.parseDouble(str);
         if(percentage>2||percentage<-2){
