@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -23,21 +22,15 @@ public class PaygapWebController {
         this.salaryService = salaryService;
         this.departmentRepository = departmentRepository;
     }
-//
-    @GetMapping(value = "/paygap/department")
-    public ResponseEntity<String> getPaygap(@RequestParam String department){
-        String paygapInfo = salaryService.genderPaygap(department);
-        return getStringResponseEntity(paygapInfo);
+    @GetMapping(value = "/paygap/{department}")
+    public String getPaygap(@PathVariable String department, Model model){
+        model.addAttribute("departments", departmentRepository.findAll());
+        model.addAttribute("output", salaryService.genderPaygap(department));
+        return "/paygap/paygap.html";
     }
-//    @GetMapping(value = "/paygap/")
-//    public ResponseEntity<String> getPaygapDefault(){
-//        String paygapInfo = salaryService.genderPaygap("none");
-//        return getStringResponseEntity(paygapInfo);
-//    }
     @GetMapping(value = "/paygap")
     public String getDefaultAllPaygap(Model model){
         model.addAttribute("departments", departmentRepository.findAll());
-        String paygapInfo = salaryService.genderPaygap("none");
         return "/paygap/paygap.html";
     }
 
