@@ -50,68 +50,7 @@ public class EmployeeWebController {
 
 
 
-//    @GetMapping("/employee/{id}")
-//    public String readEmployee(@PathVariable Integer id, Model model){
-//        Employee employee=employeeRepository.findById(id).orElse(null);
-//        model.addAttribute("employees",employee);
-//        return "employee/employee";
-//    }
-//
-//    @GetMapping("/employee/fullName/{firstName}/{lastName}")
-//    public String readEmployeesByFullname(@PathVariable String firstName, @PathVariable String lastName,Model model){
-//        List<Employee> employees=employeeRepository.findByFirstNameAndAndLastName(firstName,lastName);
-//        if(employees.size()==0){
-//            model.addAttribute("employees",null);
-//        } else {
-//            model.addAttribute("employees",employees);
-//        }
-//        return "employee/employee";
-//    }
-//    @GetMapping("/employee/firstName/{firstName}")
-//    public String readEmployeesByFirstName(@PathVariable String firstName,Model model){
-//        List<Employee> employees=employeeRepository.findByFirstName(firstName);
-//        if(employees.size()==0){
-//            model.addAttribute("employees",null);
-//        } else {
-//            model.addAttribute("employees",employees);
-//        }
-//        return "employee/employee";
-//    }
-//
-//    @GetMapping("/employee/lastName/{lastName}")
-//    public String readEmployeesByLastName(@PathVariable String lastName,Model model){
-//        List<Employee> employees=employeeRepository.findByFirstName(lastName);
-//        if(employees.size()==0){
-//            model.addAttribute("employees",null);
-//        } else {
-//            model.addAttribute("employees",employees);
-//        }
-//        return "employee/employee";
-//    }
 
-//    @PostMapping("/findEmployee")
-//    public String findEmployee(@ModelAttribute("employeeToFind")Employee foundEmployee
-////            ,
-////                               @ModelAttribute("departmentToFind") Department foundDepartment,
-////                               @ModelAttribute("deptEmpToFind") DeptEmp foundDeptEmp
-//    ) {
-//        Integer id=foundEmployee.getId();
-//        String firstName=foundEmployee.getFirstName();
-//        String lastName=foundEmployee.getLastName();
-//        if(id!=null){
-//
-//
-//            return "redirect:/employee/"+foundEmployee.getId();
-//        } else if(firstName !=null && lastName !=null) {
-//            return  "redirect:/employee/fullName/"+firstName+"/"+lastName;
-//        } else if(firstName !=null){
-//            return  "redirect:/employee/firstName/"+firstName;
-//        } else if(lastName !=null){
-//            return  "redirect:/employee/lastName/"+lastName;
-//        }else{
-//            return "redirect:/employee/0";
-//        }
-//    }
 
 
 //Read

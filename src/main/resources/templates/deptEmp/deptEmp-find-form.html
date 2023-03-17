@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeptEmp Details</title>
+
+</head>
+<body>
+<div th:insert="fragments/style"></div>
+<h1>DeptEmp Find Form</h1>
+<form th:action="@{/findDeptEmpById}" method="post">
+    <label for="empNo">Employee ID</label>
+    <input type="text" id="empNo" name="empNo"/><br/>
+
+    <label for="deptNo">Department ID</label>
+    <input type="text" id="deptNo" name="deptNo"/><br/>
+
+    <input type="submit" value="FindById"/>
+</form>
+
+</body>
+</html>
+<!--<div th:insert="fragments/footer"></div>-->

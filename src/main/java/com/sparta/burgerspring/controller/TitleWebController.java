@@ -1,6 +1,7 @@
 package com.sparta.burgerspring.controller;
 
 
+import com.sparta.burgerspring.BurgerSpringApplication;
 import com.sparta.burgerspring.model.entities.Title;
 import com.sparta.burgerspring.model.entities.TitleId;
 import com.sparta.burgerspring.model.repositories.TitleRepository;
@@ -44,6 +45,8 @@ public class TitleWebController {
 
     @PostMapping("/createTitle")
     public String createTitle(@ModelAttribute("titleToCreate") Title newTitle, @ModelAttribute("titleIdToCreate") TitleId newTitleId) {
+        BurgerSpringApplication.logger.info(newTitle.toString());
+        BurgerSpringApplication.logger.info(newTitleId.toString());
         newTitle.setId(newTitleId);
         if (newTitle.getToDate() == null) {
             newTitle.setToDate(LocalDate.of(9999, 01, 01));
