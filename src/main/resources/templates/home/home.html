@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2ea35bdb18.js" crossorigin="anonymous"></script>
 
 
     <style>
         h1 {
-            font-family: "Verdana",serif;
-            /*text-shadow: black 2px 2px;*/
+            font-family: 'Raleway', sans-serif;
+            -webkit-text-stroke: 3px #36395A;
             text-align: center;
         }
 
@@ -35,13 +38,19 @@
             box-shadow: #ADB6C4 0px 3px;
             /*border: black 2px;*/
         }
+
+        body {
+            background-image: url('/images/background-image.jpeg');
+            background-size: cover;
+        }
+
     </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body style="background-color: #333745">
+<body>
 <div th:insert="~{/fragments/nav-bar :: navbar}"></div>
 <div class="flex-box">
-    <h1 style="color: #FFEC5E">Manish's Next Top Models Amazing Company Search Engine</h1>
+    <h1 style="color: #FFEC5E">Manish's Next Top Models</h1>
     <div class="homepage-buttons">
         <a class="btn btn-light" type="button" th:href="@{/departments}">Departments  <i class="fa-solid fa-building"></i></a>
         <a class="btn btn-light" type="button" th:href="@{/employees}">Employees  <i class="fa-solid fa-user"></i></a>
